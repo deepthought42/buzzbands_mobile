@@ -5,7 +5,7 @@ angular.module('starter.controllers', [])
   document.addEventListener("deviceready", function () {
 
     $scope.scan = function(){
-      console.log("scanning");
+      $scope.status = "scanning";
 
           $cordovaBarcodeScanner
           .scan()
