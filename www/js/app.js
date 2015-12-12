@@ -28,15 +28,6 @@ angular.module('buzzbands_mobile', ['ionic',
       StatusBar.styleDefault();
     }
 
-    if (window.cordova &&
-        window.cordova.plugins &&
-        window.cordova.plugins.barcodeScanner) {
-      console.log('Plugin available');
-    }
-    else
-    {
-      console.log('nao');
-    }
   });
 })
 
