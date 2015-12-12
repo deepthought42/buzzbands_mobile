@@ -2,9 +2,11 @@ angular.module('starter.controllers', [])
 
 .controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $ionicPlatform) {
   console.log("SCANNER CONTROLLER LOADED");
-  $scope.scan = function(){
-    console.log("scanning");
-      $ionicPlatform.ready(function() {
+  document.addEventListener("deviceready", function () {
+
+    $scope.scan = function(){
+      console.log("scanning");
+
           $cordovaBarcodeScanner
           .scan()
           .then(function(result) {
@@ -17,8 +19,8 @@ angular.module('starter.controllers', [])
               // An error occurred
               vm.scanResults = 'Error: ' + error;
           });
-      });
-  };
+      }
+    }, false);
 
   $scope.scanResults = '';
 })
