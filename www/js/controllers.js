@@ -4,7 +4,7 @@ angular.module('starter.controllers', [])
   console.log("SCANNER CONTROLLER LOADED");
   document.addEventListener("deviceready", function () {
 
-    $scope.scan = function(){
+    //$scope.scan = function(){
       $scope.status = "scanning";
 
           $cordovaBarcodeScanner
@@ -19,7 +19,7 @@ angular.module('starter.controllers', [])
               // An error occurred
               vm.scanResults = 'Error: ' + error;
           });
-      }
+      //}
     }, false);
 
   $scope.scanResults = '';
