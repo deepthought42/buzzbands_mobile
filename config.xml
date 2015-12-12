@@ -39,5 +39,5 @@
     <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
   </platform>
-  <plugin name="cordova.plugins.barcodeScanner" spec="0.7.0" />
+  <plugin name="net.roughshod.plugins.barcodescanner" spec="3.0.0"/>
 </widget>
