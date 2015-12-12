@@ -6,10 +6,13 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('buzzbands_mobile', ['ionic',
+                                    'ngResource',
+                                    'buzzbands.serviceConfig',
                                     'starter.controllers',
                                     'starter.services',
                                     'ngCordova',
-                                    'tabSlideBox'])
+                                    'tabSlideBox',
+                                    'buzzbands.VenueControllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -54,15 +57,15 @@ angular.module('buzzbands_mobile', ['ionic',
     }
   })
 
-  .state('tab.venues', {
+  /*.state('tab.venues', {
       url: '/venues',
       views: {
-        'tab-venues': {
+        'venues': {
           templateUrl: 'templates/venues/index.html',
-          controller: 'VenueIndexCtrl'
+          controller: 'VenueIndexController'
         }
       }
-    })
+    })*/
     .state('tab.promotions', {
       url: '/promotions/:promotionId',
       views: {

@@ -30,7 +30,7 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/scrollableTabs/tabSlideBox.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
-
+    <script src="lib/angular-resource/angular-resource.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
@@ -39,8 +39,12 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/serviceConfig.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
+
+    <script src="js/venue/venueControllers.js"></script>
+    <script src="js/venue/venueServices.js"></script>
   </head>
   <body ng-app="buzzbands_mobile">
     <!--
@@ -73,21 +77,45 @@
           </div>
           <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
               <ion-slide >
-                <div ng-controller="ScanCtrl">
-                  <div>
-                    <button class="button button-block button-positive">
-                      <i class="icon ion-qr-scanner"></i>
-                      Scan Now
-                    </button>
-                  </div>
-                  <div>
-                    <div class="item item-divider">Scan Results</div>
-                    <div class="item item-text-wrap">{{vm.scanResults}}</div>
-                  </div>
-                </div>
+                <ion-view view-title="Scanner" ng-controller="ScanCtrl">
+                    <ion-content style="background: #e8ebf1;" class="padding">
+                        <div class="card">
+                            <div class="item">
+                                <button class="button button-block button-positive" ng-click="scan()">
+                                    <i class="icon ion-qr-scanner"></i>
+                                    Scan Now
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="item item-divider">
+                                Scan Results
+                            </div>
+                            <div class="item item-text-wrap">
+                                {{vm.scanResults}}
+                            </div>
+                        </div>
+                    </ion-content>
+                </ion-view>
               </ion-slide>
               <ion-slide>
-                  <h3>Venues List content</h3>
+                <ion-view view-title="Venues" ng-controller="VenueIndexController">
+                  <ion-content>
+                    <ion-list>
+                      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="venue in venueList" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+                        <img ng-src="{{venue.name}}">
+                        <h2>{{venue.name}}</h2>
+                        <p>{{chat.lastText}}</p>
+                        <i class="icon ion-chevron-right icon-accessory"></i>
+
+                        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+                          Delete
+                        </ion-option-button>
+                      </ion-item>
+                    </ion-list>
+                  </ion-content>
+                </ion-view>
               </ion-slide>
               <ion-slide>
                   <h3>Settings content</h3>
