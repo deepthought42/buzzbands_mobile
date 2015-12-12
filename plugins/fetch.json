@@ -47,15 +47,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-camera": {
-        "source": {
-            "type": "git",
-            "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-camera.git",
-            "subdir": "."
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-barcodescanner": {
         "source": {
             "type": "registry",
@@ -64,10 +55,10 @@
         "is_top_level": true,
         "variables": {}
     },
-    "phonegap-plugin-barcodescanner": {
+    "net.roughshod.plugins.barcodescanner": {
         "source": {
             "type": "git",
-            "url": "https://github.com/wildabeast/BarcodeScanner.git",
+            "url": "https://github.com/RoughshodNetworks/phonegap-plugin-barcodescanner.git",
             "subdir": "."
         },
         "is_top_level": true,

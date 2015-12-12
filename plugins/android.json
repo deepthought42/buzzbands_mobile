@@ -25,10 +25,7 @@
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.ionictest935175"
         },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.ionicframework.ionictest935175"
-        },
-        "cordova-plugin-barcodescanner": {
+        "net.roughshod.plugins.barcodescanner": {
             "PACKAGE_NAME": "com.ionicframework.ionictest935175"
         }
     },
