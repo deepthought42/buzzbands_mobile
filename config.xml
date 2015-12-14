@@ -45,5 +45,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="~3.0.0" />
     <plugin name="cordova-plugin-statusbar" spec="~2.0.0" />
     <plugin name="ionic-plugin-keyboard" spec="~1.0.8" />
-    <plugin name="net.roughshod.plugins.barcodescanner" spec="http://github.com/RoughshodNetworks/phonegap-plugin-barcodescanner.git" />
+    <plugin name="cordova-plugin-barcodescanner" spec="~0.7.0" />
 </widget>
