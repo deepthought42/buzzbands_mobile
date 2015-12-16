@@ -79,7 +79,7 @@ angular.module('buzzbands_mobile', ['ionic',
       }
     })
 
-  .state('tab.settings', {
+  .state('settings', {
     url: '/settings',
     views: {
       'tab-settings': {

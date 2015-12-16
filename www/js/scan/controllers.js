@@ -15,7 +15,7 @@ angular.module('scan.controllers', [])
           "Cancelled: " + result.cancelled;
 
           //alert(result.text);
-          $scope.result = result;
+          $scope.result = result.text;
           $state.go( 'venuePromotions', result.text );
       }, function(error) {
           // An error occurred
