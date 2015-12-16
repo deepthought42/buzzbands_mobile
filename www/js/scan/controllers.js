@@ -15,12 +15,13 @@ angular.module('scan.controllers', [])
           "Cancelled: " + result.cancelled;
 
           alert($scope.scanResults);
-          $state.go( "venue-promotions", $scope.scanResults );
+          $state.go( 'venuePromotions', result.text );
       }, function(error) {
           // An error occurred
           $scope.scanResults = 'Error: ' + error;
       });
   });
+
 
   $scope.scanResults = '';
 })
