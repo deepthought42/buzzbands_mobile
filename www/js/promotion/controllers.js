@@ -1,5 +1,5 @@
-angular.module('promotion.controllers', [])
+angular.module('promotion.controllers', ['buzzbands.promotion.service'])
 
-.controller('PromotionIndexCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('PromotionIndexCtrl', function($scope, $stateParams, Promotion) {
+  $scope.promotions = ['No promotions yet'];
 })

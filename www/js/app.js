@@ -53,8 +53,8 @@ angular.module('buzzbands_mobile', ['ionic',
   .state('scan', {
     url: '/scan',
     views: {
-      'tab-scan': {
-        templateUrl: './templates/scan/index.html',
+      scan: {
+        templateUrl: 'templates/scan/index.html',
         controller: 'ScanCtrl'
       }
     }
@@ -63,13 +63,13 @@ angular.module('buzzbands_mobile', ['ionic',
   .state('venuePromotions', {
       url: '/venues/:id/promotions',
       views: {
-        'venue-promotions': {
+        venuePromotions: {
           templateUrl: 'templates/promotions/index.html',
-          controller: 'PromotionIndexController'
+          controller: 'PromotionIndexCtrl'
         }
       }
     })
-    .state('tab.promotions', {
+    .state('promotions', {
       url: '/promotions/:promotionId',
       views: {
         'tab-promotions': {

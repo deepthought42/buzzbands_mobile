@@ -22,6 +22,7 @@ angular.module('scan.controllers', [])
           $scope.scanResults = 'Error: ' + error;
       });
   });
+  $state.go( 'venuePromotions', 12345 );
 
 
   $scope.scanResults = '';
