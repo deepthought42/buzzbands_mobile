@@ -1,7 +1,7 @@
 angular.module('scan.controllers', [])
 .controller('ScanAccessCtrl', function($scope, $cordovaBarcodeScanner, $ionicPlatform, $state) {
   $scope.openScanner = function(){
-    $state.go('scan');
+    $state.go('tab.scan');
   }
 })
 .controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $ionicPlatform, $state) {

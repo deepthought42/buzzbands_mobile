@@ -42,35 +42,34 @@ angular.module('buzzbands_mobile', ['ionic',
   $stateProvider
 
   // setup an abstract state for the tabs directive
-  /*.state('tab', {
+  .state('tab', {
     url: '/',
     abstract: true,
-    templateUrl: './templates/tabs.html'
+    templateUrl: 'templates/tabs.html'
   })
-*/
+
   // Each tab has its own nav history stack:
 
-  .state('scan', {
-    cache: false,
+  .state('tab.scan', {
     url: '/scan',
     views: {
-      scan: {
+      "tab-scan": {
         templateUrl: 'templates/scan/index.html',
         controller: 'ScanCtrl'
       }
     }
   })
 
-  .state('venuePromotions', {
-      url: '/venues/:id/promotions',
+  .state('tab.venuePromotions', {
+      url: '/venues/:uuid/promotions',
       views: {
-        venuePromotions: {
+        "tab-venuePromotions": {
           templateUrl: 'templates/promotions/index.html',
           controller: 'PromotionIndexCtrl'
         }
       }
     })
-    .state('promotions', {
+    .state('tab.promotions', {
       url: '/promotions/:promotionId',
       views: {
         'tab-promotions': {
@@ -80,7 +79,7 @@ angular.module('buzzbands_mobile', ['ionic',
       }
     })
 
-  .state('settings', {
+  .state('tab.settings', {
     url: '/settings',
     views: {
       'tab-settings': {
@@ -91,6 +90,6 @@ angular.module('buzzbands_mobile', ['ionic',
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/scan');
+  $urlRouterProvider.otherwise('/');
 
 });

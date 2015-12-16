@@ -21,7 +21,7 @@ angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
 
 .controller('VenueIndexController', ['$scope', 'Venue', '$state', function($scope, Venue, state, session) {
   $scope.venueLoaded = false;
-
+  
   $scope.queryVenues = function(){
     Venue.query().$promise
       .then(function(data){
