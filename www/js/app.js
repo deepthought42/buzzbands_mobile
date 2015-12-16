@@ -51,6 +51,7 @@ angular.module('buzzbands_mobile', ['ionic',
   // Each tab has its own nav history stack:
 
   .state('scan', {
+    cache: false,
     url: '/scan',
     views: {
       scan: {
