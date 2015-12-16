@@ -51,7 +51,7 @@ angular.module('buzzbands_mobile', ['ionic',
   // Each tab has its own nav history stack:
 
   .state('tab.scan', {
-    url: '/scan',
+    url: 'scan',
     views: {
       "tab-scan": {
         templateUrl: 'templates/scan/index.html',
@@ -61,7 +61,7 @@ angular.module('buzzbands_mobile', ['ionic',
   })
 
   .state('tab.venuePromotions', {
-      url: '/venues/:uuid/promotions',
+      url: 'venuePromotions',
       views: {
         "tab-venuePromotions": {
           templateUrl: 'templates/promotions/index.html',
