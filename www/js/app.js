@@ -8,11 +8,13 @@
 angular.module('buzzbands_mobile', ['ionic',
                                     'ngResource',
                                     'buzzbands.serviceConfig',
-                                    'starter.controllers',
-                                    'starter.services',
+                                    'promotion.controllers',
+                                    'settings.controllers',
+                                    'scan.controllers',
+                                    'buzzbands.venue.controllers',
+                                    'buzzbands.venue.service',
                                     'ngCordova',
-                                    'tabSlideBox',
-                                    'buzzbands.VenueControllers'])
+                                    'tabSlideBox'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -58,15 +60,15 @@ angular.module('buzzbands_mobile', ['ionic',
     }
   })
 
-  /*.state('tab.venues', {
-      url: '/venues',
+  .state('tab.venuePromotions', {
+      url: '/venues/:id/promotions',
       views: {
-        'venues': {
-          templateUrl: 'templates/venues/index.html',
-          controller: 'VenueIndexController'
+        'venue-promotions': {
+          templateUrl: 'templates/promotions/index.html',
+          controller: 'PromotionIndexController'
         }
       }
-    })*/
+    })
     .state('tab.promotions', {
       url: '/promotions/:promotionId',
       views: {

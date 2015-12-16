@@ -40,11 +40,13 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/serviceConfig.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/services.js"></script>
+    <script src="js/promotion/controllers.js"></script>
+    <script src="js/promotion/services.js"></script>
+    <script src="js/settings/controllers.js"></script>
+    <script src="js/scan/controllers.js"></script>
+    <script src="js/venue/controllers.js"></script>
+    <script src="js/venue/services.js"></script>
 
-    <script src="js/venue/venueControllers.js"></script>
-    <script src="js/venue/venueServices.js"></script>
   </head>
   <body ng-app="buzzbands_mobile">
     <!--
@@ -70,8 +72,7 @@
             <div class="tsb-ic-wrp">
               <ion-scroll direction="x" class="tsb-hscroll">
                 <a href="javascript:;" class="">Scan</a>
-                <a href="javascript:;" class="">Venues</a>
-                <a href="javascript:;" class="">Settings</a>
+                <!--<a href="javascript:;" class="">Settings</a>-->
               </ion-scroll>
             </div>
           </div>
@@ -79,7 +80,7 @@
               <ion-slide >
                 <ion-view view-title="Scanner" ng-controller="ScanCtrl">
                     <ion-content style="background: #e8ebf1;" class="padding">
-                        <div class="card">
+                        <!--<div class="card">
                             <div class="item">
                                 <button class="button button-block button-positive" ng-click="scan()">
                                     <i class="icon ion-qr-scanner"></i>
@@ -89,18 +90,30 @@
                         </div>
                         <div class="card">
                           {{status}}
-                        </div>
+                        </div>-->
                         <div class="card">
                             <div class="item item-divider">
                                 Scan Results
                             </div>
                             <div class="item item-text-wrap">
-                                {{vm.scanResults}}
+                                {{scanResults}}
                             </div>
                         </div>
                     </ion-content>
                 </ion-view>
               </ion-slide>
+              <!--<ion-slide>
+                <ion-view view-title="Account" ng-controller="SettingCtrl">
+                  <ion-content>
+                    <ion-list>
+                      <ion-toggle  ng-model="settings.enableFriends">
+                          Enable Friends
+                      </ion-toggle>
+                    </ion-list>
+                  </ion-content>
+                </ion-view>
+              </ion-slide>
+            -->
               <ion-slide>
                 <ion-view view-title="Venues" ng-controller="VenueIndexController">
                   <ion-content>
@@ -118,9 +131,6 @@
                     </ion-list>
                   </ion-content>
                 </ion-view>
-              </ion-slide>
-              <ion-slide>
-                  <h3>Settings content</h3>
               </ion-slide>
           </ion-slide-box>
         </tab-slide-box>

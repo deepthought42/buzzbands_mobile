@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('buzzbands.VenueControllers', ['buzzbands.VenueService'])
+angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
 
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('tab.venues', {
