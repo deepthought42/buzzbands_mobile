@@ -1,6 +1,6 @@
 angular.module('scan.controllers', [])
 
-.controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $ionicPlatform) {
+.controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $ionicPlatform, $location) {
   console.log("SCANNER CONTROLLER LOADED");
   document.addEventListener("deviceready", function () {
     $scope.status = "scanning";
