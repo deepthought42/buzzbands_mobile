@@ -1,6 +1,6 @@
 angular.module('scan.controllers', [])
 
-.controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $ionicPlatform, $location) {
+.controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $ionicPlatform, $state) {
   console.log("SCANNER CONTROLLER LOADED");
   document.addEventListener("deviceready", function () {
     $scope.status = "scanning";
@@ -15,7 +15,7 @@ angular.module('scan.controllers', [])
           "Cancelled: " + result.cancelled;
 
           alert($scope.scanResults);
-          $location.path( "/venues/"+$scope.scanResults+"/promotions" );
+          $state.go( "venue-promotions", $scope.scanResults );
       }, function(error) {
           // An error occurred
           $scope.scanResults = 'Error: ' + error;
