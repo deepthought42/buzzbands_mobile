@@ -12,16 +12,16 @@ angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
         }
       }
     })
-    /*.state('tab.venues', {
-      url: '/venues',
-      templateUrl: 'templates/venues/index.html',
-      controller: 'VenueIndexController'
-    });*/
+    .state('tab.venuePromotions', {
+      url: '/venuePromotions',
+      templateUrl: 'templates/promotions/index.html',
+      controller: 'VenuePromotionsIndexController'
+    });
 }])
 
 .controller('VenueIndexController', ['$scope', 'Venue', '$state', function($scope, Venue, state, session) {
   $scope.venueLoaded = false;
-  
+
   $scope.queryVenues = function(){
     Venue.query().$promise
       .then(function(data){
@@ -93,4 +93,16 @@ angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
       $scope.venueList[i].selected = selected
     }
   }
+}])
+
+.controller('VenuePromotionsIndexController', ['$scope', 'VenuePromotion', '$state',
+  function($scope, VenuePromotion, state, session) {
+    VenuePromotion.query().$promise
+      .then(function(data){
+        console.log("successfully queried venue promotions :: "+data);
+        $scope.promotions = data;
+      })
+      .catch(function(data){
+        console.log("error querying venues")
+      });
 }])

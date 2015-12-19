@@ -18,7 +18,7 @@ angular.module('scan.controllers', [])
             "Cancelled: " + result.cancelled;
 
             alert(result.text);
-            $state.go( 'venuePromotions', result.text );
+            $state.go( 'tab.venuePromotions', result.text );
         }, function(error) {
             // An error occurred
             $scope.scanResults = 'Error: ' + error;
