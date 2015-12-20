@@ -1,14 +1,23 @@
+<link href="css/promotions.css" rel="stylesheet">
 <ion-view view-title="Promotions">
   <ion-content class="padding">
-    <div class="row">
+    <div class="row main_img">
       <img class="col col-90"
-           ng-src="promotions[0].ad_location || 'images/promotions/empty-promotion.jpg'" />
+           src="{{promotions[0].ad_location !== undefined ? promotions[0].ad_location : 'img/promotion_img_missing.jpg'}}" />
     </div>
-    <ion-scroll width="100%; height: 20%" direction="x" zooming="false" class="row">
+    <ion-scroll direction="x" zooming="false" class="item wide-item previewBar">
+      <div ng-if="promotions.length === 0">
+            <img src="img/promotion_img_missing.jpg" class="previewImg"/>
+            <img src="img/promotion_img_missing.jpg" class="previewImg" />
+            <img src="img/promotion_img_missing.jpg" class="previewImg"/>
+            <img src="img/promotion_img_missing.jpg" class="previewImg"/>
+            <img src="img/promotion_img_missing.jpg" class="previewImg"/>
+      </div>
       <ion-list>
         <ion-item ng-repeat="promotion in promotions" class="col">
-          <img class="col col-90"
-               ng-src="promotion.ad_location" />
+          <img ng-repeat="promotion in promotions"
+               class="col col-90 previewImg"
+               src="{{promotions[0].ad_location !== undefined ? promotions[0].ad_location : 'img/promotion_img_missing.jpg'}}" />
         </ion-item>
       </ion-list>
     </ion-scroll>

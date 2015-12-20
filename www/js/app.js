@@ -59,16 +59,6 @@ angular.module('buzzbands_mobile', ['ionic',
       }
     }
   })
-
-  .state('tab.venuePromotions', {
-      url: 'venuePromotions',
-      views: {
-        "tab-venuePromotions": {
-          templateUrl: 'templates/promotions/index.html',
-          controller: 'PromotionIndexCtrl'
-        }
-      }
-    })
     .state('tab.promotions', {
       url: '/promotions/:promotionId',
       views: {

@@ -1,0 +1,14 @@
+.main_img {
+  height: 80%;
+  width: 110%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.previewBar {
+  height: 20%;
+}
+
+.previewBar .previewImg {
+  width: 100px;
+}

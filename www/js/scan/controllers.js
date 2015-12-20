@@ -18,13 +18,14 @@ angular.module('scan.controllers', [])
             "Cancelled: " + result.cancelled;
 
             alert(result.text);
-            $state.go( 'tab.venuePromotions', result.text );
+            $state.href("tab.venuePromotions", { venue_id: result.text });
         }, function(error) {
             // An error occurred
             $scope.scanResults = 'Error: ' + error;
         });
     });
   })
+  $state.href("tab.venuePromotions", { venue_id: 9 });
 
   $scope.scanResults = '';
 })

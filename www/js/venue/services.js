@@ -1,4 +1,4 @@
-var services = angular.module('buzzbands.venue.service', ['ngResource', 'buzzbands.serviceConfig']);
+var venueService = angular.module('buzzbands.venue.service', ['ngResource', 'buzzbands.serviceConfig']);
 
 venueService.factory('Venue', ['$resource', 'buzzbands.serviceConfig', function ($resource, config) {
   return $resource(config.basePath + '/venues/:id.json', {id: '@id'}, {
