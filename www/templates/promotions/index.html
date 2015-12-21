@@ -6,7 +6,7 @@
            src="{{promotions[0].ad_location !== undefined ? promotions[0].ad_location : 'img/promotion_img_missing.jpg'}}" />
     </div>
     <ion-scroll direction="x" zooming="false" class="item wide-item previewBar">
-      <div ng-if="promotions.length === 0">
+      <div ng-if="promotions === undefined || promotions.length === 0">
             <img src="img/promotion_img_missing.jpg" class="previewImg"/>
             <img src="img/promotion_img_missing.jpg" class="previewImg" />
             <img src="img/promotion_img_missing.jpg" class="previewImg"/>

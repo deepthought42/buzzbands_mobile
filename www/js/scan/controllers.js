@@ -25,6 +25,8 @@ angular.module('scan.controllers', [])
         });
     });
   })
+  console.log("redirecting");
+
   $state.href("tab.venuePromotions", { venue_id: 9 });
 
   $scope.scanResults = '';

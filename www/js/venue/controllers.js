@@ -12,15 +12,7 @@ angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
         }
       }
     })
-    .state('tab.venuePromotions', {
-        url: 'venues/:venue_id/promotions',
-        views: {
-          "tab-venuePromotions": {
-            templateUrl: 'templates/promotions/index.html',
-            controller: 'VenuePromotionsIndexController'
-          }
-        }
-      })
+
 }])
 
 .controller('VenueIndexController', ['$scope', 'Venue', '$state', function($scope, Venue, state, session) {
@@ -101,6 +93,7 @@ angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
 
 .controller('VenuePromotionsIndexController', ['$scope', 'VenuePromotion', '$stateParams',
   function($scope, VenuePromotion, stateParams, session) {
+    console.log("LOADING PROMOTIONS");
     VenuePromotion.query({venue_id: stateParams.venue_id}).$promise
       .then(function(data){
         console.log("successfully queried venue promotions :: "+data);
