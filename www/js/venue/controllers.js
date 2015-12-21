@@ -12,6 +12,15 @@ angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
         }
       }
     })
+    .state('tab.venuePromotions', {
+      url: 'venues/:venue_id/promotions',
+      views: {
+        "tab-venuePromotions": {
+          templateUrl: 'templates/promotions/index.html',
+          controller: 'VenuePromotionsIndexController'
+        }
+      }
+    })
 
 }])
 
