@@ -68,7 +68,7 @@ angular.module('buzzbands_mobile', ['ionic',
         }
       }
     })
-    
+
 
   .state('tab.settings', {
     url: '/settings',
@@ -81,6 +81,6 @@ angular.module('buzzbands_mobile', ['ionic',
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/scan');
 
 });
