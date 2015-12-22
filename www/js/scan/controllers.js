@@ -25,7 +25,6 @@ angular.module('scan.controllers', [])
         });
     });
   })
-  $state.go("tab.venuePromotions", { venue_id: 9});
 
   $scope.scanResults = '';
 })
