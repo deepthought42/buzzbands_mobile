@@ -12,22 +12,20 @@ angular.module('scan.controllers', [])
         .scan()
         .then(function(result) {
             // Success! Barcode data is here
-            $scope.scanResults = "We got a barcoden" +
+            $scope.scanResults = "We got a barcode \n" +
             "Result: " + result.text + "\n" +
             "Format: " + result.format + "\n" +
             "Cancelled: " + result.cancelled;
 
-            alert(result.text);
-            $state.href("tab.venuePromotions", { venue_id: result.text });
+            //alert(result.text);
+            $state.go("tab.venuePromotions", { venue_id: result.text });
         }, function(error) {
             // An error occurred
             $scope.scanResults = 'Error: ' + error;
         });
     });
   })
-  console.log("redirecting");
-
-  $state.href("tab.venuePromotions", { venue_id: 9 });
+  $state.go("tab.venuePromotions", { venue_id: 9});
 
   $scope.scanResults = '';
 })
