@@ -2,8 +2,15 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
 
 .controller('PromotionIndexCtrl',['$scope', '$stateParams', 'Promotion',
   function($scope, $stateParams, Promotion) {
-    console.log("PROMOTIONS CONTROLLER LOADED");
-    $scope.promotionLoaded = true;
+
+    /**
+     * Initialize PromotionIndexCtrl.
+     */
+    this.init = function(){
+      $scope.promotionLoaded = true;
+      $scope.main_ad_location = promotions[0].ad_location;
+      $scope.promotionList = $scope.getPromotionList();
+    }
 
     $scope.editPromotion = function(id){
       state.go("adminDashboard.editPromotion", {"promotionId": id})
@@ -24,8 +31,6 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
       //state.go("new@promotions.dashboard");
     }
 
-    $scope.promotionList = $scope.getPromotionList();
-
     $scope.deletePromotions = function(){
       for(var i =0;i < $scope.promotionList.length; i++){
         if($scope.promotionList[i].selected){
@@ -38,5 +43,7 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
         }
       }
     }
+
+    this.init();
   }
 ])
