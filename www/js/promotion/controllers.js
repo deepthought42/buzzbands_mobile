@@ -21,6 +21,11 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
       $scope.promotionList = $scope.getPromotionList();
     }
 
+    $scope.setMainAdLocation = function(ad_location){
+      console.log("fml");
+      $scope.main_ad_location = ad_location;
+    }
+
     $scope.getPromotionList = function(){
       return Promotion.query();
     }

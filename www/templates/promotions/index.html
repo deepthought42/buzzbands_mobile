@@ -8,18 +8,17 @@
     </div>
     <ion-scroll direction="x" zooming="false" class="item wide-item previewBar">
       <div ng-if="promotions === undefined || promotions.length === 0">
-            <img src="img/promotion_img_missing.jpg" class="previewImg"/>
-            <img src="img/promotion_img_missing.jpg" class="previewImg" />
-            <img src="img/promotion_img_missing.jpg" class="previewImg"/>
-            <img src="img/promotion_img_missing.jpg" class="previewImg"/>
-            <img src="img/promotion_img_missing.jpg" class="previewImg"/>
+            <img src="img/promotion_img_missing.jpg" class="previewImg" on-tap="setMainAdLocation('None')"/>
+            <img src="img/promotion_img_missing.jpg" class="previewImg" on-tap="setMainAdLocation('None')"/>
+            <img src="img/promotion_img_missing.jpg" class="previewImg" on-tap="setMainAdLocation('None')"/>
+            <img src="img/promotion_img_missing.jpg" class="previewImg" on-tap="setMainAdLocation('None')"/>
+            <img src="img/promotion_img_missing.jpg" class="previewImg" on-tap="setMainAdLocation('None')"/>
       </div>
       <ion-list>
         <ion-item ng-repeat="promotion in promotions" class="col">
-          <img ng-repeat="promotion in promotions"
-               class="col col-90 previewImg"
+          <img class="col col-90 previewImg"
                src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
-               ng-click="main_ad_location=promotion.ad_location"/>
+               on-tap="setMainAdLocation(promotion.ad_location)"/>
         </ion-item>
       </ion-list>
     </ion-scroll>
