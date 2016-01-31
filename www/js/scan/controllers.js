@@ -23,7 +23,7 @@ angular.module('scan.controllers', [])
             alert(result.text);
             $localStorage.venue_id = result.text;
 
-            $state.go("tab.venuePromotions", { venue_id: result.text });
+            $state.go("tab.venuePromotions", { "venue_id": result.text });
         }, function(error) {
             // An error occurred
             $scope.scanResults = 'Error: ' + error;

@@ -102,8 +102,8 @@ angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
 
 .controller('VenuePromotionsIndexController', ['$scope', 'VenuePromotion', '$stateParams', '$localStorage',
   function($scope, VenuePromotion, stateParams, $localStorage) {
-
-    alert("LOADING PROMOTIONS : "+$localStorage.venue_id);
+    alert("LOADING PROMOTIONS StateParams: "+stateParams.venue_id);
+    alert("LOADING PROMOTIONS LocalStorage: "+$localStorage.venue_id);
     VenuePromotion.query({venue_id: $localStorage.venue_id}).$promise
       .then(function(data){
         //alert("successfully queried venue promotions :: "+data);
