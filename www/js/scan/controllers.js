@@ -4,9 +4,12 @@ angular.module('scan.controllers', [])
     $state.go('tab.scan');
   }
 })
-.controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $ionicPlatform, $state) {
+.controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $ionicPlatform, $state, $localStorage) {
+
   $scope.$on('$ionicView.enter', function() {
     document.addEventListener("deviceready", function () {
+      //$localStorage.venue_id = 2;
+      //$state.go("tab.venuePromotions", { venue_id: '2' });
 
       $cordovaBarcodeScanner
         .scan()
@@ -17,12 +20,15 @@ angular.module('scan.controllers', [])
             "Format: " + result.format + "\n" +
             "Cancelled: " + result.cancelled;
 
-            //alert(result.text);
+            alert(result.text);
+            $localStorage.venue_id = result.text;
+
             $state.go("tab.venuePromotions", { venue_id: result.text });
         }, function(error) {
             // An error occurred
             $scope.scanResults = 'Error: ' + error;
         });
+
     });
   })
 

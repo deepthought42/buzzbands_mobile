@@ -14,7 +14,8 @@ angular.module('buzzbands_mobile', ['ionic',
                                     'buzzbands.venue.controllers',
                                     'buzzbands.venue.service',
                                     'ngCordova',
-                                    'tabSlideBox'])
+                                    'tabSlideBox',
+                                    'ngStorage'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

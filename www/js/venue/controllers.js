@@ -100,15 +100,16 @@ angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
   }
 }])
 
-.controller('VenuePromotionsIndexController', ['$scope', 'VenuePromotion', '$stateParams',
-  function($scope, VenuePromotion, stateParams, session) {
-    console.log("LOADING PROMOTIONS");
-    VenuePromotion.query({venue_id: stateParams.venue_id}).$promise
+.controller('VenuePromotionsIndexController', ['$scope', 'VenuePromotion', '$stateParams', '$localStorage',
+  function($scope, VenuePromotion, stateParams, $localStorage) {
+
+    alert("LOADING PROMOTIONS : "+$localStorage.venue_id);
+    VenuePromotion.query({venue_id: $localStorage.venue_id}).$promise
       .then(function(data){
-        console.log("successfully queried venue promotions :: "+data);
+        //alert("successfully queried venue promotions :: "+data);
         $scope.promotions = data;
       })
       .catch(function(data){
-        console.log("error querying venues")
+        alert("error querying venues")
       });
 }])

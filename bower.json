@@ -4,7 +4,8 @@
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.1.1",
     "ngCordova": "latest",
-    "angular-resource": "latest"
+    "angular-resource": "latest",
+    "ngstorage": "0.3.4"
   },
   "resolutions": {
     "angular": "1.4.8"
