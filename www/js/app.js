@@ -17,8 +17,10 @@ angular.module('buzzbands_mobile', ['ionic',
                                     'tabSlideBox',
                                     'ngStorage'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $cordovaGoogleAnalytics) {
   $ionicPlatform.ready(function() {
+  $cordovaGoogleAnalytics.startTrackerWithId('UA-000000-01');
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
