@@ -17,9 +17,9 @@ angular.module('buzzbands_mobile', ['ionic',
                                     'tabSlideBox',
                                     'ngStorage'])
 
-.run(function($ionicPlatform, $cordovaGoogleAnalytics) {
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-  $cordovaGoogleAnalytics.startTrackerWithId('UA-000000-01');
+
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -36,7 +36,6 @@ angular.module('buzzbands_mobile', ['ionic',
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
