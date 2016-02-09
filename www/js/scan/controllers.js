@@ -10,6 +10,7 @@ angular.module('scan.controllers', [])
     document.addEventListener("deviceready", function () {
       //$localStorage.venue_id = 2;
       //$state.go("tab.venuePromotions", { venue_id: '2' });
+      $localStorage.uuid = device.uuid;
 
       $cordovaBarcodeScanner
         .scan()
@@ -20,9 +21,8 @@ angular.module('scan.controllers', [])
             "Format: " + result.format + "\n" +
             "Cancelled: " + result.cancelled;
 
-            alert(result.text);
+            alert(result.text + " :: " + $localStorage.uuid );
             $localStorage.venue_id = result.text;
-
             $state.go("tab.venuePromotions", { "venue_id": result.text });
         }, function(error) {
             // An error occurred
