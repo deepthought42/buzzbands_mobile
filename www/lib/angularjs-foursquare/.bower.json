@@ -1,0 +1,33 @@
+{
+  "name": "angularjs-foursquare",
+  "main": "angularjs-foursquare.js",
+  "authors": [
+    "Mathieu Rochette <mathieu@rochette.cc>"
+  ],
+  "description": "AngularJS module for Foursquare API",
+  "keywords": [
+    "foursquare",
+    "api"
+  ],
+  "license": "aGPLv3",
+  "homepage": "https://texthtml.net/trac/projects/webapp-lib-angularjs-foursquare",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.0.8"
+  },
+  "_release": "a9bf3b58c1",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "a9bf3b58c1b2aff37d5e26f6817703d75448be20"
+  },
+  "_source": "https://github.com/texthtml/angularjs-foursquare.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/texthtml/angularjs-foursquare.git"
+}

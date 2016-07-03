@@ -6,7 +6,8 @@
     "ngCordova": "latest",
     "angular-resource": "latest",
     "ngstorage": "0.3.4",
-    "angular-google-maps": "latest"
+    "angular-google-maps": "latest",
+    "angularjs-foursquare": "https://github.com/texthtml/angularjs-foursquare.git"
   },
   "resolutions": {
     "angular": "1.4.8"
