@@ -15,7 +15,8 @@ angular.module('buzzbands_mobile', ['ionic',
                                     'buzzbands.venue.service',
                                     'ngCordova',
                                     'tabSlideBox',
-                                    'ngStorage'])
+                                    'ngStorage',
+                                    'geolocation.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -35,7 +36,13 @@ angular.module('buzzbands_mobile', ['ionic',
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', 'uiGmapGoogleMapApiProvider',
+function($stateProvider, $urlRouterProvider, GoogleMapApiProviders) {
+  GoogleMapApiProviders.configure({
+          //    key: 'your api key',
+          v: '3.20', //defaults to latest 3.X anyhow
+          libraries: 'weather,geometry,visualization'
+      });
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -84,4 +91,4 @@ angular.module('buzzbands_mobile', ['ionic',
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/scan');
 
-});
+}]);
