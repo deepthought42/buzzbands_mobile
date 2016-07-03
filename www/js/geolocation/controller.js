@@ -1,6 +1,6 @@
 angular.module('geolocation.controllers', ['uiGmapgoogle-maps'])
-.controller('GeoCtrl', 'uiGmapGoogleMapApi', function($cordovaGeolocation, uiGmapGoogleMapApi) {
-
+.controller('GeoCtrl', ['$cordovaGeolocation', 'uiGmapGoogleMapApi',
+function($cordovaGeolocation, uiGmapGoogleMapApi) {
   // uiGmapGoogleMapApi is a promise.
   // The "then" callback function provides the google.maps object.
   uiGmapGoogleMapApi.then(function(maps) {
@@ -13,6 +13,8 @@ angular.module('geolocation.controllers', ['uiGmapgoogle-maps'])
     .then(function (position) {
       var lat  = position.coords.latitude
       var long = position.coords.longitude
+
+      alert("LAT : "+lat+"; LONG : "+long);
     }, function(err) {
       // error
     });
@@ -43,4 +45,4 @@ angular.module('geolocation.controllers', ['uiGmapgoogle-maps'])
       }, function (error) {
       // error
     });
-});
+}]);

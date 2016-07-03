@@ -14,7 +14,6 @@ angular.module('buzzbands_mobile', ['ionic',
                                     'buzzbands.venue.controllers',
                                     'buzzbands.venue.service',
                                     'ngCordova',
-                                    'tabSlideBox',
                                     'ngStorage',
                                     'geolocation.controllers'])
 
@@ -83,7 +82,7 @@ function($stateProvider, $urlRouterProvider, GoogleMapApiProviders) {
     views: {
       'tab-settings': {
         templateUrl: 'templates/settings/index.html',
-        controller: 'SettingCtrl'
+        controller: 'GeoCtrl'
       }
     }
   });

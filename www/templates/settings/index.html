@@ -1,9 +1,11 @@
-<ion-view view-title="Account" ng-controller="SettingCtrl">
+<ion-view view-title="Account" ng-controller="GeoCtrl">
   <ion-content>
     <ion-list>
       <ion-toggle  ng-model="settings.enableFriends">
           Enable Friends
       </ion-toggle>
     </ion-list>
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+
   </ion-content>
 </ion-view>
