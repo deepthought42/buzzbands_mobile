@@ -14,6 +14,15 @@ venue.config(['$stateProvider', 'uiGmapGoogleMapApiProvider',
             controller: 'VenuePromotionsIndexController'
           }
         }
+      })
+      .state('tab.venues', {
+        url: 'venues',
+        views: {
+          'tab-venues': {
+            templateUrl: 'templates/venues/index.html',
+            controller: 'VenueIndexController'
+          }
+        }
       });
 
       uiGmapGoogleMapApiProvider.configure({
@@ -28,7 +37,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
                  '$cordovaGeolocation', 'uiGmapGoogleMapApi',
   function($scope, Venue, state, $cordovaGeolocation, uiGmapGoogleMapApi) {
     $scope.venueLoaded = false;
-    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+
     uiGmapGoogleMapApi.then(function(maps) {
 
     });
@@ -112,10 +121,11 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
       .then(function (position) {
         var lat  = position.coords.latitude;
         var long = position.coords.longitude;
+        $scope.map = { center: { latitude: lat, longitude: long }, zoom: 8 };
 
         alert("LAT : "+lat+"; LONG : "+long);
       }, function(err) {
-        console.log("Error retrieving lat and long from device :"+Object.keys(err));
+        alert("Error retrieving lat and long from device :"+Object.keys(err));
         // error
       });
 

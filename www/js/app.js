@@ -62,25 +62,7 @@ function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-    .state('tab.promotions', {
-      url: '/promotions/:promotionId',
-      views: {
-        'tab-promotions': {
-          templateUrl: 'templates/promotions/index.html',
-          controller: 'PromotionIndexCtrl'
-        }
-      }
-    })
-
-    .state('tab.venues', {
-      url: 'venues',
-      views: {
-        'tab-venues': {
-          templateUrl: 'templates/venues/index.html',
-          controller: 'VenueIndexController'
-        }
-      }
-    })
+  
   .state('tab.settings', {
     url: 'settings',
     views: {
