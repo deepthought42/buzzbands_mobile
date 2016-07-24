@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('buzzbands_mobile', ['ionic',
+angular.module('hypedrive_mobile', ['ionic',
                                     'ngResource',
                                     'buzzbands.serviceConfig',
                                     'promotion.controllers',
@@ -35,13 +35,9 @@ angular.module('buzzbands_mobile', ['ionic',
   });
 })
 
-.config(['$stateProvider', '$urlRouterProvider', 'uiGmapGoogleMapApiProvider',
-function($stateProvider, $urlRouterProvider, GoogleMapApiProviders) {
-  GoogleMapApiProviders.configure({
-          //    key: 'your api key',
-          v: '3.20', //defaults to latest 3.X anyhow
-          libraries: 'weather,geometry,visualization'
-      });
+.config(['$stateProvider', '$urlRouterProvider',
+function($stateProvider, $urlRouterProvider) {
+
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -76,9 +72,17 @@ function($stateProvider, $urlRouterProvider, GoogleMapApiProviders) {
       }
     })
 
-
+    .state('tab.venues', {
+      url: 'venues',
+      views: {
+        'tab-venues': {
+          templateUrl: 'templates/venues/index.html',
+          controller: 'VenueIndexController'
+        }
+      }
+    })
   .state('tab.settings', {
-    url: '/settings',
+    url: 'settings',
     views: {
       'tab-settings': {
         templateUrl: 'templates/settings/index.html',
@@ -88,6 +92,6 @@ function($stateProvider, $urlRouterProvider, GoogleMapApiProviders) {
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/scan');
+  $urlRouterProvider.otherwise('/venues');
 
 }]);

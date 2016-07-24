@@ -1,8 +1,17 @@
-angular.module('geolocation.controllers', ['uiGmapgoogle-maps'])
-.controller('GeoCtrl', ['$cordovaGeolocation', 'uiGmapGoogleMapApi',
-function($cordovaGeolocation, uiGmapGoogleMapApi) {
+var geolocation = angular.module('geolocation.controllers', ['uiGmapgoogle-maps']);
+geolocation.config(function(uiGmapGoogleMapApiProvider) {
+  uiGmapGoogleMapApiProvider.configure({
+      key: 'AIzaSyBbhjPwUZ4dy5EOFD3uaOJVZnuOqHSYUjI',
+      v: '3.24', //defaults to latest 3.X anyhow
+      libraries: 'weather,geometry,visualization'
+  });
+});
+geolocation.controller('GeoCtrl', ['$scope', '$cordovaGeolocation', 'uiGmapGoogleMapApi',
+function($scope, $cordovaGeolocation, uiGmapGoogleMapApi) {
   // uiGmapGoogleMapApi is a promise.
   // The "then" callback function provides the google.maps object.
+  $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+
   uiGmapGoogleMapApi.then(function(maps) {
 
   });
@@ -11,12 +20,12 @@ function($cordovaGeolocation, uiGmapGoogleMapApi) {
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function (position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
+      var lat  = position.coords.latitude;
+      var long = position.coords.longitude;
 
       alert("LAT : "+lat+"; LONG : "+long);
     }, function(err) {
-      // error
+      console.log("Failed to load lat and long")
     });
 
 
@@ -32,17 +41,18 @@ function($cordovaGeolocation, uiGmapGoogleMapApi) {
       // error
     },
     function(position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
+      var lat  = position.coords.latitude;
+      var long = position.coords.longitude;
   });
 
 
   watch.clearWatch();
   // OR
-  $cordovaGeolocation.clearWatch(watch)
+  /*$cordovaGeolocation.clearWatch(watch)
     .then(function(result) {
-      // success
+        // success
       }, function (error) {
-      // error
+        // error
     });
+      */
 }]);

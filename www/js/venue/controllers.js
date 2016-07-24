@@ -1,41 +1,44 @@
 'use strict';
 
-angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
+var venue = angular.module('buzzbands.venue.controllers',
+                          ['buzzbands.venue.service', 'uiGmapgoogle-maps']);
 
-.config(['$stateProvider', function($stateProvider) {
-  $stateProvider.state('tab.venues', {
-      url: '/venues',
-      views: {
-        'venues': {
-          templateUrl: 'templates/venues/index.html',
-          controller: 'VenueIndexController'
+venue.config(['$stateProvider', 'uiGmapGoogleMapApiProvider',
+  function($stateProvider, uiGmapGoogleMapApiProvider) {
+    $stateProvider
+      .state('tab.venuePromotions', {
+        url: 'venues/:venue_id/promotions',
+        views: {
+          "tab-venuePromotions": {
+            templateUrl: 'templates/promotions/index.html',
+            controller: 'VenuePromotionsIndexController'
+          }
         }
-      }
-    })
-    .state('tab.venuePromotions', {
-      url: 'venues/:venue_id/promotions',
-      views: {
-        "tab-venuePromotions": {
-          templateUrl: 'templates/promotions/index.html',
-          controller: 'VenuePromotionsIndexController'
-        }
-      }
-    })
+      });
 
-}])
+      uiGmapGoogleMapApiProvider.configure({
+          key: 'AIzaSyBbhjPwUZ4dy5EOFD3uaOJVZnuOqHSYUjI',
+          v: '3.24', //defaults to latest 3.X anyhow
+          libraries: 'weather,geometry,visualization'
+      });
+  }
+]);
 
-.controller('VenueIndexController', ['$scope', 'Venue', '$state', 'thFoursquare',
-  function($scope, Venue, state, session, thFoursquare) {
+venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
+                 '$cordovaGeolocation', 'uiGmapGoogleMapApi',
+  function($scope, Venue, state, $cordovaGeolocation, uiGmapGoogleMapApi) {
     $scope.venueLoaded = false;
+    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+    uiGmapGoogleMapApi.then(function(maps) {
 
-    //get all photos for users
-    $scope.photos = thFoursquare.api.users.photos();
+    });
 
     $scope.queryVenues = function(){
       Venue.query().$promise
         .then(function(data){
           console.log("successfully queried venues :: "+data);
           $scope.venueList = data;
+
         })
         .catch(function(data){
           console.log("error querying venues")
@@ -101,11 +104,53 @@ angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
 
         $scope.venueList[i].selected = selected
       }
-    }
-  }
-])
+    };
 
-.controller('VenuePromotionsIndexController', ['$scope', 'VenuePromotion', '$stateParams', '$localStorage',
+    var posOptions = {timeout: 50000, enableHighAccuracy: false};
+    $cordovaGeolocation
+      .getCurrentPosition(posOptions)
+      .then(function (position) {
+        var lat  = position.coords.latitude;
+        var long = position.coords.longitude;
+
+        alert("LAT : "+lat+"; LONG : "+long);
+      }, function(err) {
+        console.log("Error retrieving lat and long from device :"+Object.keys(err));
+        // error
+      });
+
+
+    var watchOptions = {
+      timeout : 3000,
+      enableHighAccuracy: false // may cause errors if true
+    };
+
+    var watch = $cordovaGeolocation.watchPosition(watchOptions);
+    watch.then(
+      null,
+      function(err) {
+        // error
+      },
+      function(position) {
+        var lat  = position.coords.latitude;
+        var long = position.coords.longitude;
+    });
+
+
+    watch.clearWatch();
+    // OR
+    /*
+    $cordovaGeolocation.clearWatch(watch)
+      .then(function(result) {
+          // success
+        }, function (error) {
+          // error
+      });
+      */
+  }
+]);
+
+venue.controller('VenuePromotionsIndexController', ['$scope', 'VenuePromotion', '$stateParams', '$localStorage',
   function($scope, VenuePromotion, stateParams, $localStorage) {
     $localStorage.venue_id = stateParams.venue_id;
 
@@ -118,4 +163,4 @@ angular.module('buzzbands.venue.controllers', ['buzzbands.venue.service'])
       .catch(function(data){
         alert("error querying venues")
       });
-}])
+}]);
