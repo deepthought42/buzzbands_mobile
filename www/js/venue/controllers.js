@@ -91,7 +91,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
           var map = new google.maps.Map(document.getElementById("map"),
               mapOptions);
 
-          $scope.map.setCenter($scope.currentLatLng);
+          map.setCenter($scope.currentLatLng);
           var circle = new google.maps.Circle({
             center: $scope.currentLatLng,
             radius: 300,
