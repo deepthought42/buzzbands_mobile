@@ -1,7 +1,7 @@
 {
-  "name": "ionic_test",
-  "version": "1.1.1",
-  "description": "ionic_test: An Ionic project",
+  "name": "HypeDrive",
+  "version": "1.0.1",
+  "description": "HypeDrive mobile app",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
@@ -21,7 +21,8 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "phonegap-plugin-barcodescanner"
+    "phonegap-plugin-barcodescanner",
+    "cordova-plugin-googlemaps"
   ],
   "cordovaPlatforms": [
     "android",

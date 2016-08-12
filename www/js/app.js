@@ -62,7 +62,7 @@ function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  
+
   .state('tab.settings', {
     url: 'settings',
     views: {
