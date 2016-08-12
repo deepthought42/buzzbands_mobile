@@ -78,6 +78,8 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
         var options = {timeout: 10000, enableHighAccuracy: true};
         $cordovaGeolocation.getCurrentPosition(options).then(function(pos) {
           console.log("Current location : "+pos.coords.latitude + " :: " + pos.coords.longitude);
+          $ionicLoading.hide();
+
           $scope.currentLatLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 
           var mapOptions = {
@@ -106,7 +108,6 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
           });
 
           $scope.map = map;
-          $ionicLoading.hide();
           $scope.venueList = $scope.queryVenues($scope.currentLatLng.lat, $scope.currentLatLng.lng);
         }, function(error) {
           alert('Unable to get location: ' + error.message);
