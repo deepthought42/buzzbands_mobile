@@ -85,7 +85,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
 
           var mapOptions = {
             center: $scope.currentLatLng,
-            zoom: 10,
+            zoom: 13,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
 
@@ -95,7 +95,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
           map.setCenter($scope.currentLatLng);
           var circle = new google.maps.Circle({
             center: $scope.currentLatLng,
-            radius: 1000,
+            radius: 500,
             strokeColor : '#FE7155',
             strokeWidth: 5,
             fillColor : '#FEB5A6',
@@ -128,18 +128,57 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
             });
         }, function(error) {
           $ionicLoading.hide();
+          /*
           alert('Unable to get location: ' + error.message);
-            /*$scope.queryVenues(42.3499958, -71.0656288).$promise
+
+          $scope.currentLatLng = new google.maps.LatLng(42.3489958, -71.0656288);
+
+          var mapOptions = {
+            center: $scope.currentLatLng,
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+
+          var map = new google.maps.Map(document.getElementById("map"),
+              mapOptions);
+
+          map.setCenter($scope.currentLatLng);
+          var circle = new google.maps.Circle({
+            center: $scope.currentLatLng,
+            radius: 300,
+            strokeColor : '#FE7155',
+            strokeWidth: 5,
+            fillColor : '#FEB5A6',
+            map: map
+          });
+
+          var marker = new google.maps.Marker({
+            position: $scope.currentLatLng,
+
+            map: map,
+            title: 'I am here'
+          });
+
+          $scope.map = map;
+            $scope.queryVenues(42.3499958, -71.0656288).$promise
               .then(function(data){
                 console.log("successfully queried venues :: "+data);
                 $scope.venueList = data;
                 for(var i=0; i< $scope.venueList.length; i++){
                   var venueLatLng = new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude);
-
+                  var goldStar = {
+                            path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+                            fillColor: 'yellow',
+                            fillOpacity: 0.8,
+                            scale: .1,
+                            strokeColor: 'gold',
+                            strokeWeight: 14
+                          };
                   var marker = new google.maps.Marker({
                     position: venueLatLng,
+                    icon: goldStar,
                     map: $scope.map,
-                    title: $scope.venueList[i].name
+                    title: '$scope.venueList[i].name'
                   });
                   console.log(Object.keys($scope.venueList[i]));
                   console.log("COORD : "+$scope.venueList[i].latitude +","+ $scope.venueList[i].longitude);
