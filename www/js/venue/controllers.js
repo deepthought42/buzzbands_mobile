@@ -70,6 +70,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
           return;
         }
 */
+
         $scope.loading = $ionicLoading.show({
           content: 'Getting current location...',
           showBackdrop: false
@@ -108,11 +109,43 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
           });
 
           $scope.map = map;
-          $scope.venueList = $scope.queryVenues($scope.currentLatLng.lat, $scope.currentLatLng.lng);
+
+          $scope.queryVenues($scope.currentLatLng.lat, $scope.currentLatLng.lng).$promise
+            .then(function(data){
+              console.log("successfully queried venues :: "+data);
+              $scope.venueList = data;
+              for(var i=0; i< $scope.venueList.length; i++){
+                var venueLatLng = new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude);
+
+                var marker = new google.maps.Marker({
+                  position: venueLatLng,
+                  map: $scope.map,
+                  title: $scope.venueList[i].name
+                });
+                console.log(Object.keys($scope.venueList[i]));
+                console.log("COORD : "+$scope.venueList[i].latitude +","+ $scope.venueList[i].longitude);
+              }
+            });
         }, function(error) {
-          alert('Unable to get location: ' + error.message);
-          //$scope.venueList = $scope.queryVenues(42.3499958, -71.0656288);
           $ionicLoading.hide();
+          alert('Unable to get location: ' + error.message);
+            /*$scope.queryVenues(42.3499958, -71.0656288).$promise
+              .then(function(data){
+                console.log("successfully queried venues :: "+data);
+                $scope.venueList = data;
+                for(var i=0; i< $scope.venueList.length; i++){
+                  var venueLatLng = new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude);
+
+                  var marker = new google.maps.Marker({
+                    position: venueLatLng,
+                    map: $scope.map,
+                    title: $scope.venueList[i].name
+                  });
+                  console.log(Object.keys($scope.venueList[i]));
+                  console.log("COORD : "+$scope.venueList[i].latitude +","+ $scope.venueList[i].longitude);
+                }
+              });
+              */
         });
       }
       google.maps.event.addDomListener(window, 'load', initialize);
@@ -129,16 +162,22 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
     $scope.queryVenues = function(latitude, longitude){
       console.log("CURRENT LAT : "+latitude);
       console.log("CURRENT LNG : "+longitude);
-      Venue.query({lat: latitude, lng: longitude}).$promise
+      return Venue.query({lat: latitude, lng: longitude})/*.$promise
         .then(function(data){
           console.log("successfully queried venues :: "+data);
           $scope.venueList = data;
-
+          for(var i=0; i< $scope.venueList.length; i++){
+            console.log(Object.keys($scope.venueList[i]));
+            console.log("COORD : "+$scope.venueList[i].latitude +","+ $scope.venueList[i].longitude);
+          }
         })
         .catch(function(data){
           console.log("error querying venues")
         });
+        */
     }
+
+    $scope.queryVenues(42.3499958, -71.0656288);
 
     $scope.deleteVenue = function(venueId){
       Venue.remove({id: venueId}).$promise
