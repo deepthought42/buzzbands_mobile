@@ -69,7 +69,6 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
         if(!$scope.map) {
           return;
         }
-        google.maps.event.addDomListener(window, 'load', initialize);
 */
         $scope.loading = $ionicLoading.show({
           content: 'Getting current location...',
@@ -99,15 +98,23 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
             fillColor : '#FEB5A6',
             map: map
           });
-          
-          $scope.venueList = $scope.queryVenues($scope.currentLatLng.lat, $scope.currentLatLng.lng);
+
+          var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Uluru (Ayers Rock)'
+          });
+
+          $scope.map = map;
           $ionicLoading.hide();
+          $scope.venueList = $scope.queryVenues($scope.currentLatLng.lat, $scope.currentLatLng.lng);
         }, function(error) {
           alert('Unable to get location: ' + error.message);
           $scope.venueList = $scope.queryVenues(42.3499958, -71.0656288);
           $ionicLoading.hide();
         });
       }
+      google.maps.event.addDomListener(window, 'load', initialize);
 
 
       $scope.centerOnMe = function() {
