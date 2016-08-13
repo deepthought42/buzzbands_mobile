@@ -15,10 +15,19 @@ venue.config(['$stateProvider',
           }
         }
       })
-      .state('tab.venues', {
-        url: 'venues',
+      .state('tab.venuesMap', {
+        url: 'venuesMap',
         views: {
-          'tab-venues': {
+          'tab-venuesMap': {
+            templateUrl: 'templates/venues/map.html',
+            controller: 'VenueIndexController'
+          }
+        }
+      })
+      .state('tab.venuesList', {
+        url: 'venuesList',
+        views: {
+          'tab-venuesList': {
             templateUrl: 'templates/venues/index.html',
             controller: 'VenueIndexController'
           }
@@ -85,7 +94,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
 
           var mapOptions = {
             center: $scope.currentLatLng,
-            zoom: 13,
+            zoom: 16,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
 
@@ -95,7 +104,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
           map.setCenter($scope.currentLatLng);
           var circle = new google.maps.Circle({
             center: $scope.currentLatLng,
-            radius: 500,
+            radius: 300,
             strokeColor : '#FE7155',
             strokeWidth: 5,
             fillColor : '#FEB5A6',
@@ -135,7 +144,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
 
           var mapOptions = {
             center: $scope.currentLatLng,
-            zoom: 16,
+            zoom: 17,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
 

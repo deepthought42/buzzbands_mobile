@@ -1,5 +1,9 @@
-<ion-view view-title="Venue">
+<ion-view view-title="Venues" >
   <ion-content>
-    <div id="map"></div>
+    <ion-list>
+      <ion-item ng-repeat="venue in venues" class="col" on-tap="showPromotions(venue.id)">
+        {{venue.name}}
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

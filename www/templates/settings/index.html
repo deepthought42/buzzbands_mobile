@@ -1,9 +1,9 @@
 <ion-view view-title="Account" ng-controller="GeoCtrl">
   <ion-content>
     <ion-list>
-      <ion-toggle  ng-model="settings.enableFriends">
-          Enable Friends
-      </ion-toggle>
+      <ion-item ng-repeat="venue in venues" class="col" on-tap="showPromotions(venue.id)">
+        {{venue.name}}
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
