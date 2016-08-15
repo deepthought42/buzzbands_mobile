@@ -20,7 +20,7 @@ venue.config(['$stateProvider',
         views: {
           'tab-venuesMap': {
             templateUrl: 'templates/venues/map.html',
-            controller: 'VenueIndexController'
+            controller: 'VenueMapController'
           }
         }
       })
@@ -36,9 +36,9 @@ venue.config(['$stateProvider',
   }
 ]);
 
-venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
-                 '$cordovaGeolocation', '$ionicLoading', '$compile',
-  function($scope, Venue, state, $cordovaGeolocation, $ionicLoading, $compile) {
+venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
+                 '$cordovaGeolocation', '$ionicLoading', '$compile', '$state',
+  function($scope, Venue, state, $cordovaGeolocation, $ionicLoading, $compile, $state) {
     $scope.venueLoaded = false;
     $scope.map={};
 
@@ -61,12 +61,6 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
 */
 /*        var infowindow = new google.maps.InfoWindow({
           content: compiled[0]
-        });
-
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          title: 'Uluru (Ayers Rock)'
         });
 
         google.maps.event.addListener(marker, 'click', function() {
@@ -117,6 +111,13 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
             title: 'I am here'
           });
 
+          marker.addListener('click', function() {
+            map.setZoom(8);
+            map.setCenter(marker.getPosition());
+
+            $state.go("tab.venuePromotions", { "venue_id": 1 });
+          });
+
           $scope.map = map;
 
           $scope.queryVenues($scope.currentLatLng.lat, $scope.currentLatLng.lng).$promise
@@ -131,13 +132,11 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
                   map: $scope.map,
                   title: $scope.venueList[i].name
                 });
-                console.log(Object.keys($scope.venueList[i]));
-                console.log("COORD : "+$scope.venueList[i].latitude +","+ $scope.venueList[i].longitude);
               }
             });
         }, function(error) {
           $ionicLoading.hide();
-          /*
+
           alert('Unable to get location: ' + error.message);
 
           $scope.currentLatLng = new google.maps.LatLng(42.3489958, -71.0656288);
@@ -168,12 +167,14 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
             title: 'I am here'
           });
 
+
           $scope.map = map;
             $scope.queryVenues(42.3499958, -71.0656288).$promise
               .then(function(data){
                 console.log("successfully queried venues :: "+data);
                 $scope.venueList = data;
                 for(var i=0; i< $scope.venueList.length; i++){
+                  $scope.venue = $scope.venueList[i];
                   var venueLatLng = new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude);
                   var goldStar = {
                             path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
@@ -189,11 +190,20 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
                     map: $scope.map,
                     title: '$scope.venueList[i].name'
                   });
+
+                  marker.addListener('click', function() {
+                    console.log("CLICKED");
+                    //map.setZoom(8);
+                    //map.setCenter(marker.getPosition());
+                    console.log("VENUE ID :: "+ $scope.venue.id);
+                    $state.go("tab.venuePromotions", { "venue_id": $scope.venue.id });
+                  });
+
                   console.log(Object.keys($scope.venueList[i]));
                   console.log("COORD : "+$scope.venueList[i].latitude +","+ $scope.venueList[i].longitude);
                 }
               });
-              */
+
         });
       }
       google.maps.event.addDomListener(window, 'load', initialize);
@@ -208,21 +218,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
       };
 
     $scope.queryVenues = function(latitude, longitude){
-      console.log("CURRENT LAT : "+latitude);
-      console.log("CURRENT LNG : "+longitude);
-      return Venue.query({lat: latitude, lng: longitude})/*.$promise
-        .then(function(data){
-          console.log("successfully queried venues :: "+data);
-          $scope.venueList = data;
-          for(var i=0; i< $scope.venueList.length; i++){
-            console.log(Object.keys($scope.venueList[i]));
-            console.log("COORD : "+$scope.venueList[i].latitude +","+ $scope.venueList[i].longitude);
-          }
-        })
-        .catch(function(data){
-          console.log("error querying venues")
-        });
-        */
+      return Venue.query({lat: latitude, lng: longitude});
     }
 
     $scope.queryVenues(42.3499958, -71.0656288);
@@ -301,12 +297,52 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', '$state',
   }
 ]);
 
-venue.controller('VenuePromotionsIndexController', ['$scope', 'VenuePromotion', '$stateParams', '$localStorage',
-  function($scope, VenuePromotion, stateParams, $localStorage) {
+venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
+                                          '$stateParams', '$localStorage',
+                                          '$cordovaGeolocation', '$state',
+  function($scope, Venue, VenuePromotion, stateParams, $localStorage, $cordovaGeolocation, $state) {
     $localStorage.venue_id = stateParams.venue_id;
 
+    var options = {timeout: 10000, enableHighAccuracy: true};
+    $scope.venueLatLng = {}
+    $cordovaGeolocation.getCurrentPosition(options).then(function(pos) {
+        $scope.venueLatLng = new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude);
+      })
+      .catch(function(data){
+        alert("error querying venues")
+      });
+
+      /*
+       * if given group is the selected group, deselect it
+       * else, select the given group
+       */
+      $scope.toggleVenue = function(venue) {
+        if ($scope.isVenueShown(venue)) {
+          $scope.shownVenue = null;
+        } else {
+          $scope.shownVenue = venue;
+        }
+      };
+      $scope.isVenueShown = function(venue) {
+        return $scope.shownVenue === venue;
+      };
+
+      $scope.showVenuePromotions = function(venue_id){
+        $state.go("tab.venuePromotions", { "venue_id": venue_id });
+        console.log("SHOWING VENUE PROMOTIONS");
+      }
+
+      $scope.venueList = Venue.query($scope.venueLatLng);
+}]);
+
+venue.controller('VenuePromotionsIndexController', ['$scope', 'VenuePromotion', '$stateParams', '$localStorage',
+  function($scope, VenuePromotion, stateParams, $localStorage) {
+    console.log("LOADING VENUE PROMOTIONS");
+
+    $localStorage.venue_id = stateParams.venue_id;
     VenuePromotion.query({venue_id: $localStorage.venue_id}).$promise
       .then(function(data){
+        console.log("VENUE PROMOTIONS GRABBED");
         //alert("successfully queried venue promotions :: "+data);
         $scope.promotions = data;
         //$scope.main_ad_location = data[0].ad_location;

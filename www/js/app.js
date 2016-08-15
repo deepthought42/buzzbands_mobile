@@ -12,7 +12,6 @@ angular.module('hypedrive_mobile', ['ionic',
                                     'settings.controllers',
                                     'scan.controllers',
                                     'buzzbands.venue.controllers',
-                                    'buzzbands.venue.service',
                                     'ngCordova',
                                     'ngStorage',
                                     'geolocation.controllers'])

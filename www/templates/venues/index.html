@@ -1,9 +1,35 @@
 <ion-view view-title="Venues" >
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="venue in venues" class="col" on-tap="showPromotions(venue.id)">
-        {{venue.name}}
-      </ion-item>
+      <div ng-repeat="venue in venueList">
+          <ion-item class="item-stable"
+                    ng-click="toggleVenue(venue)"
+                    ng-class="{active: isVenueShown(venue)}">
+              <i class="icon" ng-class="isVenueShown(venue) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+            {{venue.name}}
+            <div>
+              <span>
+                Promo Count :: {{venue.promo_count}}
+              </span>
+            </div>
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-show="isVenueShown(venue)">
+            <div>
+              {{venue.name}}
+            </div>
+            <div name="address">
+              {{venue.address}}
+            </div>
+            <div>
+              <span>
+                Promo Count :: {{venue.promo_count}}
+              </span>
+            </div>
+            <button ng-click="showVenuePromotions(venue.id)">Promotions</button>
+          </ion-item>
+        </div>
     </ion-list>
   </ion-content>
 </ion-view>
