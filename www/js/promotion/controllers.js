@@ -1,15 +1,12 @@
 angular.module('promotion.controllers', ['buzzbands.promotion.service'])
 
-.controller('PromotionIndexCtrl',['$scope', '$stateParams', 'Promotion',
-  function($scope, $stateParams, Promotion) {
-    console.log("LOADING PROMOTIONS");
+.controller('PromotionIndexCtrl',['$scope', '$stateParams', 'Promotion', '$location',
+  function($scope, $stateParams, Promotion, $location) {
 
     /**
      * Initialize PromotionIndexCtrl.
      */
     this.init = function(){
-      console.log("LOADING PROMOTIONS");
-
       $scope.promotionLoaded = true;
       $scope.main_ad_location = promotions[0].ad_location;
       $scope.promotionList = $scope.getPromotionList();

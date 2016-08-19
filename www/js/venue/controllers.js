@@ -329,15 +329,16 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
 
       $scope.showVenuePromotions = function(venue_id){
         $state.go("tab.venuePromotions", { "venue_id": venue_id });
-        console.log("SHOWING VENUE PROMOTIONS");
       }
 
       $scope.venueList = Venue.query($scope.venueLatLng);
 }]);
 
-venue.controller('VenuePromotionsIndexController', ['$scope', 'VenuePromotion', '$stateParams', '$localStorage',
-  function($scope, VenuePromotion, stateParams, $localStorage) {
-    console.log("LOADING VENUE PROMOTIONS");
+venue.controller('VenuePromotionsIndexController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
+  function($rootScope, $scope, VenuePromotion, stateParams, $localStorage, $location) {
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+      viewData.enableBack = true;
+    });
 
     $localStorage.venue_id = stateParams.venue_id;
     VenuePromotion.query({venue_id: $localStorage.venue_id}).$promise
