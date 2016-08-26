@@ -192,7 +192,6 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                   });
 
                   marker.addListener('click', function() {
-                    console.log("CLICKED");
                     //map.setZoom(8);
                     //map.setCenter(marker.getPosition());
                     console.log("VENUE ID :: "+ $scope.venue.id);
@@ -218,7 +217,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
       };
 
     $scope.queryVenues = function(latitude, longitude){
-      return Venue.query({lat: latitude, lng: longitude});
+      return Venue.getNearMe({lat: latitude, lng: longitude});
     }
 
     $scope.queryVenues(42.3499958, -71.0656288);
@@ -331,7 +330,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
         $state.go("tab.venuePromotions", { "venue_id": venue_id });
       }
 
-      $scope.venueList = Venue.query($scope.venueLatLng);
+      $scope.venueList = Venue.getNearMe($scope.venueLatLng);
 }]);
 
 venue.controller('VenuePromotionsIndexController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
@@ -341,7 +340,7 @@ venue.controller('VenuePromotionsIndexController', ['$rootScope', '$scope', 'Ven
     });
 
     $localStorage.venue_id = stateParams.venue_id;
-    VenuePromotion.query({venue_id: $localStorage.venue_id}).$promise
+    VenuePromotion.getNearMe({venue_id: $localStorage.venue_id}).$promise
       .then(function(data){
         console.log("VENUE PROMOTIONS GRABBED");
         //alert("successfully queried venue promotions :: "+data);
