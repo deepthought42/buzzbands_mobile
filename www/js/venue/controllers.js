@@ -43,6 +43,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
     $scope.map={};
 
     function initialize() {
+      $scope.errors = [];
         //var myLatlng = new google.maps.LatLng(-71.0656288,42.3499958);
 
 
@@ -122,7 +123,6 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 
           $scope.queryVenues($scope.currentLatLng.lat, $scope.currentLatLng.lng).$promise
             .then(function(data){
-              console.log("successfully queried venues :: "+data);
               $scope.venueList = data;
               for(var i=0; i< $scope.venueList.length; i++){
                 var venueLatLng = new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude);
@@ -137,8 +137,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
         }, function(error) {
           $ionicLoading.hide();
 
-          alert('Unable to get location: ' + error.message);
-
+          $scope.errors.push("Unable to get location");
           $scope.currentLatLng = new google.maps.LatLng(42.3489958, -71.0656288);
 
           var mapOptions = {
@@ -194,15 +193,10 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                   marker.addListener('click', function() {
                     //map.setZoom(8);
                     //map.setCenter(marker.getPosition());
-                    console.log("VENUE ID :: "+ $scope.venue.id);
                     $state.go("tab.venuePromotions", { "venue_id": $scope.venue.id });
                   });
-
-                  console.log(Object.keys($scope.venueList[i]));
-                  console.log("COORD : "+$scope.venueList[i].latitude +","+ $scope.venueList[i].longitude);
                 }
               });
-
         });
       }
       google.maps.event.addDomListener(window, 'load', initialize);
@@ -213,7 +207,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
       };
 
       $scope.clickTest = function() {
-        alert('Example of infowindow with ng-click')
+        //alert('Example of infowindow with ng-click')
       };
 
     $scope.queryVenues = function(latitude, longitude){
@@ -229,7 +223,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           state.go("venues");
         })
         .catch(function(data){
-          console.log("an error occurred while deleting venue");
+          $scope.errors.push("Could not delete venue");
         });
     }
 
@@ -241,7 +235,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
               $scope.venueList = $scope.queryVenues();
             })
             .catch(function(data){
-              console.log("an error occurred while deleting venue");
+              $scope.errors.push("Error deleting venue");
             });
           }
         }
@@ -276,8 +270,6 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 
     $scope.selectAll = function(selected){
       for(var i=0; i<$scope.venueList.length; i++){
-        console.log("selecting all");
-
         $scope.venueList[i].selected = selected;
       }
     };
@@ -300,15 +292,36 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
                                           '$stateParams', '$localStorage',
                                           '$cordovaGeolocation', '$state',
   function($scope, Venue, VenuePromotion, stateParams, $localStorage, $cordovaGeolocation, $state) {
-    $localStorage.venue_id = stateParams.venue_id;
+    this._init = function(){
+      $localStorage.venue_id = stateParams.venue_id;
+      $scope.errors = [];
+    }
+
+
+    $scope.ratingsObject = {
+      iconOn: 'ion-ios-star',    //Optional
+      iconOff: 'ion-ios-star-outline',   //Optional
+      iconOnColor: 'rgb(200, 200, 100)',  //Optional
+      iconOffColor:  'rgb(200, 100, 100)',    //Optional
+      rating:  2, //Optional
+      minRating:1,    //Optional
+      readOnly: true, //Optional
+      callback: function(rating) {    //Mandatory
+        $scope.ratingsCallback(rating);
+      }
+    };
+
+    $scope.ratingsCallback = function(rating) {
+      console.log('Selected rating is : ', rating);
+    };
 
     var options = {timeout: 10000, enableHighAccuracy: true};
     $scope.venueLatLng = {}
     $cordovaGeolocation.getCurrentPosition(options).then(function(pos) {
-        $scope.venueLatLng = new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude);
+        $scope.venueLatLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
       })
       .catch(function(data){
-        alert("error querying venues")
+        $scope.errors.push("Error getting venues");
       });
 
       /*
@@ -331,16 +344,28 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
       }
 
       $scope.venueList = Venue.getNearMe($scope.venueLatLng);
+
+      this._init();
 }]);
 
 venue.controller('VenuePromotionsIndexController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
   function($rootScope, $scope, VenuePromotion, stateParams, $localStorage, $location) {
+
+    this._init = function(){
+        $scope.errors = [];
+        $localStorage.venue_id = stateParams.venue_id;
+
+
+        $scope.rating = {};
+        $scope.rating.rate = 3;
+        $scope.rating.max = 5;
+    }
+
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
       viewData.enableBack = true;
     });
 
-    $localStorage.venue_id = stateParams.venue_id;
-    VenuePromotion.getNearMe({venue_id: $localStorage.venue_id}).$promise
+    VenuePromotion.query({venue_id: $localStorage.venue_id}).$promise
       .then(function(data){
         console.log("VENUE PROMOTIONS GRABBED");
         //alert("successfully queried venue promotions :: "+data);
@@ -348,6 +373,8 @@ venue.controller('VenuePromotionsIndexController', ['$rootScope', '$scope', 'Ven
         //$scope.main_ad_location = data[0].ad_location;
       })
       .catch(function(data){
-        alert("error querying venues")
+        $scope.errors.push("Error getting venues.");
       });
+
+    this._init();
 }]);

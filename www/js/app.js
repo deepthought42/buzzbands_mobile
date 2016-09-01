@@ -14,7 +14,8 @@ angular.module('hypedrive_mobile', ['ionic',
                                     'buzzbands.venue.controllers',
                                     'ngCordova',
                                     'ngStorage',
-                                    'geolocation.controllers'])
+                                    'geolocation.controllers',
+                                  'ionic.rating'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
