@@ -99,7 +99,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           map.setCenter($scope.currentLatLng);
           var circle = new google.maps.Circle({
             center: $scope.currentLatLng,
-            radius: 300,
+            radius: 4000,
             strokeColor : '#FE7155',
             strokeWidth: 5,
             fillColor : '#FEB5A6',
@@ -109,7 +109,8 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           var marker = new google.maps.Marker({
             position: $scope.currentLatLng,
             map: map,
-            title: 'I am here'
+            title: 'I am here',
+            icon: ion-flash
           });
 
           marker.addListener('click', function() {
@@ -152,7 +153,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           map.setCenter($scope.currentLatLng);
           var circle = new google.maps.Circle({
             center: $scope.currentLatLng,
-            radius: 300,
+            radius: 3500,
             strokeColor : '#FE7155',
             strokeWidth: 5,
             fillColor : '#FEB5A6',
