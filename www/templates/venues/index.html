@@ -1,35 +1,128 @@
-<ion-view view-title="Venues" >
-  <ion-content>
-    <ion-list>
-      <div ng-repeat="venue in venueList">
-          <ion-item class="item-stable"
-                    ng-click="toggleVenue(venue)"
-                    ng-class="{active: isVenueShown(venue)}">
-              <i class="icon" ng-class="isVenueShown(venue) ? 'ion-minus' : 'ion-plus'"></i>
-            &nbsp;
-            {{venue.name}}
-            <div>
-              <span>
-                Promo Count :: {{venue.promo_count}}
-              </span>
-            </div>
-          </ion-item>
-          <ion-item class="item-accordion"
-                    ng-show="isVenueShown(venue)">
-            <div>
-              {{venue.name}}
-            </div>
-            <div name="address">
-              {{venue.address}}
-            </div>
-            <div>
-              <span>
-                Promo Count :: {{venue.promo_count}}
-              </span>
-            </div>
-            <button ng-click="showVenuePromotions(venue.id)">Promotions</button>
-          </ion-item>
-        </div>
-    </ion-list>
-  </ion-content>
+<ion-view title="Venues" id="Venues">
+    <ion-content padding="true" class="has-header">
+        <ion-list id="venues-list2">
+            <ion-item class="item-thumbnail-left" id="venues-list-item5">
+                <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
+                     on-tap="setMainAdLocation(venue.ad_location)"/>
+                 <div class="row">
+                    <div class="col col-50">
+                        <div class="row">Royale</div>
+                        <div class="row">125 main st</div>
+
+                    </div>
+                    <div class="col col-20">
+                      <div class="row">32
+                      </div>
+                      <div class="row">checkins</div>
+                    </div>
+                   <div class="col text-right">
+                      <p>.2 miles</p>
+                   </div>
+                 </div>
+            </ion-item>
+            <ion-item class="item-thumbnail-left" id="venues-list-item6">
+              <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
+                   on-tap="setMainAdLocation(venue.ad_location)"/>
+              <div class="row">
+                 <div class="col col-50">
+                     <div class="row">Royale</div>
+                     <div class="row">125 main st</div>
+
+                 </div>
+                 <div class="col col-20">
+                   <div class="row">32
+                   </div>
+                   <div class="row">checkins</div>
+                 </div>
+                <div class="col text-right">
+                   <p>.2 miles</p>
+                </div>
+              </div>
+
+              <rating ng-model="rating.rate" max="rating.max"></rating>
+            </ion-item>
+            <ion-item class="item-thumbnail-left" id="venues-list-item7">
+              <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
+                   on-tap="setMainAdLocation(venue.ad_location)"/>
+             <div class="row">
+                <div class="col col-50">
+                    <div class="row">Royale</div>
+                    <div class="row">125 main st</div>
+
+                </div>
+                <div class="col col-20">
+                  <div class="row">32
+                  </div>
+                  <div class="row">checkins</div>
+                </div>
+               <div class="col text-right">
+                  <p>.2 miles</p>
+               </div>
+             </div>
+              <rating ng-model="rating.rate" max="rating.max"></rating>
+
+            </ion-item>
+            <ion-item class="item-thumbnail-left" id="venues-list-item8">
+              <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
+                   on-tap="setMainAdLocation(venue.ad_location)"/>
+               <div class="row">
+                  <div class="col col-50">
+                      <div class="row">Royale</div>
+                      <div class="row">125 main st</div>
+
+                  </div>
+                  <div class="col col-20">
+                    <div class="row">32
+                    </div>
+                    <div class="row">checkins</div>
+                  </div>
+                 <div class="col text-right">
+                    <p>.2 miles</p>
+                 </div>
+               </div>
+              <rating ng-model="rating.rate" max="rating.max"></rating>
+            </ion-item>
+            <ion-item class="item-thumbnail-left" id="venues-list-item10">
+              <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
+                   on-tap="setMainAdLocation(venue.ad_location)"/>
+               <div class="row">
+                  <div class="col col-50">
+                      <div class="row">Royale</div>
+                      <div class="row">125 main st</div>
+
+                  </div>
+                  <div class="col col-20">
+                    <div class="row">32
+                    </div>
+                    <div class="row">checkins</div>
+                  </div>
+                 <div class="col text-right">
+                    <p>.2 miles</p>
+                 </div>
+               </div>
+              <rating ng-model="rating.rate" max="rating.max"></rating>
+            </ion-item>
+            <ion-item class="item-thumbnail-left" id="venues-list-item9">
+              <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
+                   on-tap="setMainAdLocation(venue.ad_location)"/>
+             <div class="row">
+                <div class="col col-50">
+                    <div class="row">Royale</div>
+                    <div class="row">125 main st</div>
+
+                </div>
+                <div class="col col-20">
+                  <div class="row">32
+                  </div>
+                  <div class="row">checkins</div>
+                </div>
+               <div class="col text-right">
+                  <p>.2 miles</p>
+               </div>
+             </div>
+              <rating ng-model="rating.rate" max="rating.max"></rating>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>
