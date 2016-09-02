@@ -1,4 +1,6 @@
-<link href="css/promotions.css" rel="stylesheet">
+
+
+<!--<link href="css/promotions.css" rel="stylesheet">
 <ion-view view-title="Promotions">
   <ion-content>
       <ion-list>
@@ -11,6 +13,7 @@
             <p>Hayao Miyazaki • 1988</p>
             <button clear item-right>View</button>
           </ion-item>
+        -->
         <!--
         <ion-item ng-repeat="promotion in promotions" class="col">
 
@@ -22,6 +25,8 @@
                201 broadway
         </ion-item>
   -->
+
+  <!--
         <ion-item >
           <ion-thumbnail item-left>
             <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
@@ -76,4 +81,57 @@
       </ion-item-sliding>
       </ion-list>
   </ion-content>
+</ion-view>
+-->
+<ion-view title="Promotions" id="Promotion">
+    <ion-content padding="true" class="has-header">
+        <ion-list id="promotions-list2">
+            <ion-item class="item-thumbnail-left" id="promotions-list-item5">
+                <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
+                     on-tap="setMainAdLocation(promotion.ad_location)"/>
+                <h2>Royale</h2>
+                <p>
+                  125 main st
+                  <rating ng-model="rating.rate" max="rating.max"></rating>
+                </p>
+            </ion-item>
+            <ion-item class="item-thumbnail-left" id="promotions-list-item6">
+              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
+                   on-tap="setMainAdLocation(promotion.ad_location)"/>
+              <h2>Royale</h2>
+              <p>125 main st</p>
+              <rating ng-model="rating.rate" max="rating.max"></rating>
+            </ion-item>
+            <ion-item class="item-thumbnail-left" id="promotions-list-item7">
+              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
+                   on-tap="setMainAdLocation(promotion.ad_location)"/>
+              <h2>Royale</h2>
+              <p>125 main st </p>
+              <rating ng-model="rating.rate" max="rating.max"></rating>
+
+            </ion-item>
+            <ion-item class="item-thumbnail-left" id="promotions-list-item8">
+              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
+                   on-tap="setMainAdLocation(promotion.ad_location)"/>
+              <h2>Royale</h2>
+              <p>125 main st</p>
+              <rating ng-model="rating.rate" max="rating.max"></rating>
+            </ion-item>
+            <ion-item class="item-thumbnail-left" id="promotions-list-item10">
+              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
+                   on-tap="setMainAdLocation(promotion.ad_location)"/>
+              <h2>Royale</h2>
+              <p>125 main st</p>
+              <rating ng-model="rating.rate" max="rating.max"></rating>
+            </ion-item>
+            <ion-item class="item-thumbnail-left" id="promotions-list-item9">
+              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
+                   on-tap="setMainAdLocation(promotion.ad_location)"/>
+              <h2>Royale</h2>
+              <p>125 main st</p>
+              <rating ng-model="rating.rate" max="rating.max"></rating>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>
