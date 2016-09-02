@@ -89,7 +89,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 
           var mapOptions = {
             center: $scope.currentLatLng,
-            zoom: 11,
+            zoom: 12,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
 
