@@ -99,22 +99,22 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           console.log("Current location : "+pos.coords.latitude + " :: " + pos.coords.longitude);
           $ionicLoading.hide();
 
-          $scope.currentLatLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+          $scope.currentLatLng = new plugin.google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 
           var mapOptions = {
             center: $scope.currentLatLng,
             zoom: 12,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeId: plugin.google.maps.MapTypeId.ROADMAP,
             mapTypeControl: false,
             streetViewControl: false,
             rotateControl: false
           };
 
-          var map = new google.maps.Map(document.getElementById("map"),
+          var map = new plugin.google.maps.Map(document.getElementById("map"),
               mapOptions);
 
           map.setCenter($scope.currentLatLng);
-          var circle = new google.maps.Circle({
+          var circle = new plugin.google.maps.Circle({
             center: $scope.currentLatLng,
             radius: 3220, //meters in 2 miles
             strokeColor : '#de519b',
@@ -131,13 +131,13 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
             .then(function(data){
               $scope.venueList = data;
               for(var i=0; i< $scope.venueList.length; i++){
-                var venueLatLng = new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude);
+                var venueLatLng = new plugin.google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude);
 
-                var marker = new google.maps.Marker({
+                var marker = new plugin.google.maps.Marker({
                   position: venueLatLng,
                   map: $scope.map,
                   title: $scope.venueList[i].name,
-                  icon: '/img/lightning_icon_pink.png'
+                  icon: '/img/lightning_icon_pink2.png'
                 });
 
 /*
@@ -160,19 +160,19 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           $ionicLoading.hide();
 
           $scope.errors.push("Unable to get location");
-          $scope.currentLatLng = new google.maps.LatLng(42.3489958, -71.0656288);
+          $scope.currentLatLng = new plugin.google.maps.LatLng(42.3489958, -71.0656288);
 
           var mapOptions = {
             center: $scope.currentLatLng,
             zoom: 17,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: plugin.google.maps.MapTypeId.ROADMAP
           };
 
-          var map = new google.maps.Map(document.getElementById("map"),
+          var map = new plugin.google.maps.Map(document.getElementById("map"),
               mapOptions);
 
           map.setCenter($scope.currentLatLng);
-          var circle = new google.maps.Circle({
+          var circle = new plugin.google.maps.Circle({
             center: $scope.currentLatLng,
             radius: 3220,   //meters in 2 miles
             strokeColor : '#FE7155',
@@ -196,7 +196,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                     title: '$scope.venueList[i].name',
                     icon: '',
                     labelContent: '<i class="fa fa-send fa-3x" style="color:rgba(153,102,102,0.8);"></i>',
-                    labelAnchor: new google.maps.Point(22, 50)
+                    labelAnchor: new plugin.google.maps.Point(22, 50)
                   });
 
                   marker.addListener('click', function() {
@@ -208,7 +208,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
               });
         });
       }
-      google.maps.event.addDomListener(window, 'load', initialize);
+      plugin.google.maps.event.addDomListener(window, 'load', initialize);
 
 
       $scope.centerOnMe = function() {
