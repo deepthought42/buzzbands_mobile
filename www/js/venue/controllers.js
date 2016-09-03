@@ -114,9 +114,11 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           var circle = new google.maps.Circle({
             center: $scope.currentLatLng,
             radius: 3220, //meters in 2 miles
-            strokeColor : '#FE7155',
-            strokeWidth: 5,
-            fillColor : '#FEB5A6',
+            strokeColor : '#de519b',
+            strokeWeight: 1,
+            strokeOpacity: .9,
+            fillColor : '#de519b',
+            fillOpacity: .1,
             map: map
           });
 
@@ -159,7 +161,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
             center: $scope.currentLatLng,
             radius: 3220,   //meters in 2 miles
             strokeColor : '#FE7155',
-            strokeWidth: 5,
+            strokeWeight: 20,
             fillColor : '#FEB5A6',
             map: map
           });
