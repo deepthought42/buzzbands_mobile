@@ -22,3 +22,11 @@ ul.rating li i {
   display:inline;
   font-size: 30px;
 }
+
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+    color: #4BBA4B !important;
+}
+
+.tab-item {
+    color: #F2F4F4 !important;
+}
