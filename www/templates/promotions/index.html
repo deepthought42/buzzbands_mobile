@@ -4,15 +4,15 @@
 -->
 <ion-view title="Promotions" id="Promotion">
     <ion-content padding="true" class="has-header">
-        <ion-list id="promotions-list2">
+        <ion-list id="promotions-list">
             <ion-item class="item-thumbnail-left" id="promotions-list-item5">
                 <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
-                     on-tap="setMainAdLocation(promotion.ad_location)"/>
+                     on-tap="goToPromotionDetails(promotion)"/>
 
                  <div class="row">
                    <div class="col col-100">
-                     <h2>$1 bud light</h2>
-                     <rating ng-model="rating.rate" max="rating.max"></rating>
+                     <h2>{{promotion.name}}</h2>
+                     <p>{{promotion.description}}</p>
                    </div>
                  </div>
             </ion-item>
@@ -23,48 +23,6 @@
               <div class="row">
                 <div class="col col-100">
                   <h2>$5 Corona bucket</h2>
-                  <rating ng-model="rating.rate" max="rating.max"></rating>
-                </div>
-              </div>
-            </ion-item>
-
-            <ion-item class="item-thumbnail-left" id="promotions-list-item7">
-              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
-                   on-tap="setMainAdLocation(promotion.ad_location)"/>
-              <div class="row">
-                <div class="col col-100">
-                  <h2>$3 Fireball</h2>
-                  <rating ng-model="rating.rate" max="rating.max"></rating>
-                </div>
-              </div>
-            </ion-item>
-            <ion-item class="item-thumbnail-left" id="promotions-list-item8">
-              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
-                   on-tap="setMainAdLocation(promotion.ad_location)"/>
-              <div class="row">
-                <div class="col col-100">
-                  <p>Shots</p>
-                  <rating ng-model="rating.rate" max="rating.max"></rating>
-                </div>
-              </div>
-            </ion-item>
-            <ion-item class="item-thumbnail-left" id="promotions-list-item10">
-              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
-                   on-tap="setMainAdLocation(promotion.ad_location)"/>
-              <div class="row">
-                <div class="col col-40">
-                  <h2>$4 well drinks</h2>
-                  <rating ng-model="rating.rate" max="rating.max"></rating>
-                </div>
-              </div>
-            </ion-item>
-
-            <ion-item class="item-thumbnail-left" id="promotions-list-item9">
-              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
-                   on-tap="setMainAdLocation(promotion.ad_location)"/>
-              <div class="row">
-                <div class="col col-40">
-                  <h2>$5 Burger</h2>
                   <rating ng-model="rating.rate" max="rating.max"></rating>
                 </div>
               </div>

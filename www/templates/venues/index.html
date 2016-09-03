@@ -1,19 +1,25 @@
 <ion-view title="Venues" id="Venues">
     <ion-content padding="true" class="has-header">
         <ion-list id="venues-list2">
-            <ion-item class="item-thumbnail-left" id="venues-list-item5">
-                <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
-                     on-tap="setMainAdLocation(venue.ad_location)"/>
+            <ion-item ng-repeat="venue in venueList"
+                      class="item-thumbnail-left"
+                      id="venues-list-item5"
+                      ui-sref="tab.venuePromotions">
+                <img ng-src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"/>
+
                  <div class="row">
                     <div class="col col-50">
-                        <div class="row">Royale</div>
-                        <div class="row">125 main st</div>
-
+                        <div class="row">{{venue.name}}</div>
+                        <div class="row">{{venue.address}}</div>
                     </div>
+
                     <div class="col col-50">
-                      <div class="row text-right"><p>32 checkins</p></div>
                       <div class="row text-right">
-                         <p>.2 miles</p>
+                        <p>{{venue.promo_count}}</p>
+                      </div>
+
+                      <div class="row text-right">
+                         <p>{{venue.distance}} miles</p>
                       </div>
                     </div>
                  </div>
@@ -28,89 +34,12 @@
 
                  </div>
                  <div class="col col-50">
-                   <div class="row text-right"><p>32 checkins</p></div>
+                   <div class="row text-right"><p>32 check-ins</p></div>
                    <div class="row text-right">
                       <p>.2 miles</p>
                    </div>
                  </div>
               </div>
-
-              <rating ng-model="rating.rate" max="rating.max"></rating>
-            </ion-item>
-            <ion-item class="item-thumbnail-left" id="venues-list-item7">
-              <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
-                   on-tap="setMainAdLocation(venue.ad_location)"/>
-             <div class="row">
-                <div class="col col-50">
-                    <div class="row">Royale</div>
-                    <div class="row">125 main st</div>
-
-                </div>
-                <div class="col col-50">
-                  <div class="row text-right"><p>32 checkins</p></div>
-                  <div class="row text-right">
-                     <p>.2 miles</p>
-                  </div>
-                </div>
-             </div>
-              <rating ng-model="rating.rate" max="rating.max"></rating>
-
-            </ion-item>
-            <ion-item class="item-thumbnail-left" id="venues-list-item8">
-              <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
-                   on-tap="setMainAdLocation(venue.ad_location)"/>
-               <div class="row">
-                  <div class="col col-50">
-                      <div class="row">Royale</div>
-                      <div class="row">125 main st</div>
-
-                  </div>
-                  <div class="col col-50">
-                    <div class="row text-right"><p>32 checkins</p></div>
-                    <div class="row text-right">
-                       <p>.2 miles</p>
-                    </div>
-                  </div>
-               </div>
-              <rating ng-model="rating.rate" max="rating.max"></rating>
-            </ion-item>
-            <ion-item class="item-thumbnail-left" id="venues-list-item10">
-              <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
-                   on-tap="setMainAdLocation(venue.ad_location)"/>
-               <div class="row">
-                  <div class="col col-50">
-                    <div class="row">Royale</div>
-                    <div class="row">125 main st</div>
-                  </div>
-                  <div class="col col-50">
-                    <div class="row text-right"><p>32 checkins</p></div>
-                    <div class="row text-right">
-                       <p>.2 miles</p>
-                    </div>
-                  </div>
-               </div>
-              <rating ng-model="rating.rate" max="rating.max"></rating>
-            </ion-item>
-            <ion-item class="item-thumbnail-left" id="venues-list-item9">
-              <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
-                   on-tap="setMainAdLocation(venue.ad_location)"/>
-             <div class="row">
-                <div class="col col-50">
-                    <div class="row">Royale</div>
-                    <div class="row">125 main st</div>
-
-                </div>
-                <div class="col col-50">
-                  <div class="row text-right">
-                    <p>32 checkins</p>
-                  </div>
-                  <div class="row text-right">
-                     <p>.2 miles</p>
-                  </div>
-                </div>
-
-             </div>
-              <rating ng-model="rating.rate" max="rating.max"></rating>
 
             </ion-item>
         </ion-list>

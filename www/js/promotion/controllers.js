@@ -1,7 +1,7 @@
 angular.module('promotion.controllers', ['buzzbands.promotion.service'])
 
-.controller('PromotionIndexCtrl',['$scope', '$stateParams', 'Promotion', '$location',
-  function($scope, $stateParams, Promotion, $location) {
+.controller('PromotionIndexCtrl',['$scope', '$stateParams', '$state', 'Promotion', '$location',
+  function($scope, $stateParams, $state, Promotion, $location) {
 
     $scope.ratingsObject = {
       iconOn: 'ion-ios-star',    //Optional
@@ -35,10 +35,6 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
 
     };
 
-    $scope.editPromotion = function(id){
-      state.go("adminDashboard.editPromotion", {"promotionId": id})
-    };
-
     $scope.deletePromotion = function(id){
       Promotion.delete(id);
       $scope.promotionList = $scope.getPromotionList();
@@ -70,6 +66,16 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
       }
     };
 
+    $scope.goToPromotionDetails = function(promotion){
+      $state.go("adminDashboard.viewPromotion", {"promotionId": id, "promotion": promotion})
+    }
+
     this.init();
+  }
+])
+
+.controller('PromotionDetailCtrl',['$scope', '$stateParams', '$state', 'Promotion', '$location',
+  function($scope, $stateParams, $state, Promotion, $location) {
+    
   }
 ]);

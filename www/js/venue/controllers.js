@@ -110,7 +110,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
             position: $scope.currentLatLng,
             map: map,
             title: 'I am here',
-            icon: ion-flash
+            icon: 'ion-flash'
           });
 
           marker.addListener('click', function() {
@@ -295,7 +295,10 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
   function($scope, Venue, VenuePromotion, stateParams, $localStorage, $cordovaGeolocation, $state) {
     this._init = function(){
       $localStorage.venue_id = stateParams.venue_id;
+
       $scope.errors = [];
+      $scope.venueList = {};
+
     }
 
 
@@ -319,7 +322,9 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
     var options = {timeout: 10000, enableHighAccuracy: true};
     $scope.venueLatLng = {}
     $cordovaGeolocation.getCurrentPosition(options).then(function(pos) {
-        $scope.venueLatLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+        //$scope.venueLatLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+        $scope.venueList = Venue.getNearMe(pos.coords.latitude, pos.coords.longitude);
+
       })
       .catch(function(data){
         $scope.errors.push("Error getting venues");
@@ -336,6 +341,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
           $scope.shownVenue = venue;
         }
       };
+
       $scope.isVenueShown = function(venue) {
         return $scope.shownVenue === venue;
       };
@@ -344,7 +350,6 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
         $state.go("tab.venuePromotions", { "venue_id": venue_id });
       }
 
-      $scope.venueList = Venue.getNearMe($scope.venueLatLng);
 
       this._init();
 }]);
@@ -355,7 +360,6 @@ venue.controller('VenuePromotionsIndexController', ['$rootScope', '$scope', 'Ven
     this._init = function(){
         $scope.errors = [];
         $localStorage.venue_id = stateParams.venue_id;
-
 
         $scope.rating = {};
         $scope.rating.rate = 3;
@@ -368,7 +372,6 @@ venue.controller('VenuePromotionsIndexController', ['$rootScope', '$scope', 'Ven
 
     VenuePromotion.query({venue_id: $localStorage.venue_id}).$promise
       .then(function(data){
-        console.log("VENUE PROMOTIONS GRABBED");
         //alert("successfully queried venue promotions :: "+data);
         $scope.promotions = data;
         //$scope.main_ad_location = data[0].ad_location;
