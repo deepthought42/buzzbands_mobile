@@ -5,8 +5,10 @@
 <ion-view title="Promotions" id="Promotion">
     <ion-content padding="true" class="has-header">
         <ion-list id="promotions-list">
-            <ion-item class="item-thumbnail-left" id="promotions-list-item5">
-                <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
+            <ion-item ng-repeat="promotion in promotionList"
+                      class="item-thumbnail-left"
+                      id="promotions-list-item5">
+                <img ng-src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
                      on-tap="goToPromotionDetails(promotion)"/>
 
                  <div class="row">

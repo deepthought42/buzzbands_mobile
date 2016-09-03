@@ -320,7 +320,6 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
     };
 
     var options = {timeout: 10000, enableHighAccuracy: true};
-    $scope.venueLatLng = {}
     $cordovaGeolocation.getCurrentPosition(options).then(function(pos) {
         //$scope.venueLatLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
         $scope.venueList = Venue.getNearMe(pos.coords.latitude, pos.coords.longitude);
