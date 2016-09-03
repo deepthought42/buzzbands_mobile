@@ -3,7 +3,7 @@ var venueService = angular.module('buzzbands.venue.service', ['ngResource', 'buz
 venueService.factory('Venue', ['$resource', 'buzzbands.serviceConfig', function ($resource, config) {
   return $resource(config.basePath + '/venues/:id.json', {id: '@id'}, {
     update: { method: 'PUT'},
-    getNearMe: {method: 'GET', isArray: true, url: config.basePath+'/venues/nearMe'}
+    getNearMe: {method: 'GET', isArray: true, url: config.basePath+'/venuesNearMe'}
   });
 }]);
 

@@ -291,8 +291,8 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 
 venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
                                           '$stateParams', '$localStorage',
-                                          '$cordovaGeolocation', '$state',
-  function($scope, Venue, VenuePromotion, stateParams, $localStorage, $cordovaGeolocation, $state) {
+                                          '$cordovaGeolocation', '$state', '$ionicLoading',
+  function($scope, Venue, VenuePromotion, stateParams, $localStorage, $cordovaGeolocation, $state, $ionicLoading) {
     this._init = function(){
       $localStorage.venue_id = stateParams.venue_id;
 
@@ -319,11 +319,17 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
       console.log('Selected rating is : ', rating);
     };
 
+    $scope.loading = $ionicLoading.show({
+      content: 'Getting current location...',
+      showBackdrop: false
+    });
+
     var options = {timeout: 10000, enableHighAccuracy: true};
     $cordovaGeolocation.getCurrentPosition(options).then(function(pos) {
         //$scope.venueLatLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        $scope.venueList = Venue.getNearMe(pos.coords.latitude, pos.coords.longitude);
-
+        console.log("venue list : " + pos.coords.latitude);
+        $scope.venueList = Venue.getNearMe({lat: pos.coords.latitude, lng: pos.coords.longitude});
+        $ionicLoading.hide();
       })
       .catch(function(data){
         $scope.errors.push("Error getting venues");
