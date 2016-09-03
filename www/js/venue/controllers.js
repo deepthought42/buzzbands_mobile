@@ -32,6 +32,20 @@ venue.config(['$stateProvider',
             controller: 'VenueIndexController'
           }
         }
+      })
+
+      .state('tab.venueDetails', {
+        url: 'venuesList',
+        views: {
+          'tab-venuesDetails': {
+            templateUrl: 'templates/venues/details.html',
+            controller: 'VenueDetailsController'
+          },
+          'tab-venuePromotions': {
+            templateUrl: 'templates/venues/promotions.html',
+            controller: 'VenuePromotionsController'
+          }
+        }
       });
   }
 ]);
@@ -106,23 +120,9 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
             map: map
           });
 
-          var marker = new google.maps.Marker({
-            position: $scope.currentLatLng,
-            map: map,
-            title: 'I am here',
-            icon: 'ion-flash'
-          });
-
-          marker.addListener('click', function() {
-            map.setZoom(8);
-            map.setCenter(marker.getPosition());
-
-            $state.go("tab.venuePromotions", { "venue_id": 1 });
-          });
-
           $scope.map = map;
 
-          $scope.queryVenues($scope.currentLatLng.lat, $scope.currentLatLng.lng).$promise
+          $scope.queryVenues(pos.coords.latitude, pos.coords.longitude).$promise
             .then(function(data){
               $scope.venueList = data;
               for(var i=0; i< $scope.venueList.length; i++){
@@ -132,6 +132,10 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                   position: venueLatLng,
                   map: $scope.map,
                   title: $scope.venueList[i].name
+                });
+
+                marker.addListener('click', function() {
+                  $state.go("tab.venuePromotions", { "venue_id": 1 });
                 });
               }
             });
@@ -169,7 +173,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 
 
           $scope.map = map;
-            $scope.queryVenues(42.3499958, -71.0656288).$promise
+            $scope.queryVenues(42.3499958, -71.0656288)
               .then(function(data){
                 console.log("successfully queried venues :: "+data);
                 $scope.venueList = data;
@@ -214,8 +218,6 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
     $scope.queryVenues = function(latitude, longitude){
       return Venue.getNearMe({lat: latitude, lng: longitude});
     }
-
-    $scope.queryVenues(42.3499958, -71.0656288);
 
     $scope.deleteVenue = function(venueId){
       Venue.remove({id: venueId}).$promise
