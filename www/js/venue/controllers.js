@@ -104,7 +104,10 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           var mapOptions = {
             center: $scope.currentLatLng,
             zoom: 12,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeControl: false,
+            streetViewControl: false,
+            rotateControl: false
           };
 
           var map = new google.maps.Map(document.getElementById("map"),
