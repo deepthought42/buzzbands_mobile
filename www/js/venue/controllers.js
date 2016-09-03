@@ -99,7 +99,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           map.setCenter($scope.currentLatLng);
           var circle = new google.maps.Circle({
             center: $scope.currentLatLng,
-            radius: 1610, //meters in a mile
+            radius: 3220, //meters in 2 miles
             strokeColor : '#FE7155',
             strokeWidth: 5,
             fillColor : '#FEB5A6',
@@ -153,7 +153,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           map.setCenter($scope.currentLatLng);
           var circle = new google.maps.Circle({
             center: $scope.currentLatLng,
-            radius: 1610,   //meters in a mile
+            radius: 3220,   //meters in 2 miles
             strokeColor : '#FE7155',
             strokeWidth: 5,
             fillColor : '#FEB5A6',
