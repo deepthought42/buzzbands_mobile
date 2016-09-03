@@ -136,8 +136,20 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                 var marker = new google.maps.Marker({
                   position: venueLatLng,
                   map: $scope.map,
-                  title: $scope.venueList[i].name
+                  title: $scope.venueList[i].name,
+                  icon: '/img/lightning_icon_pink.png'
                 });
+
+/*
+                var marker = new RichMarker({
+                        position: new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude),
+                        map: $scope.map,
+                        draggable: false,
+                        flat:true,
+                        anchor: RichMarkerPosition.MIDDLE,
+                        content: '<ion-icon class="flash"></ion-icon>'
+                    });
+*/
 
                 marker.addListener('click', function() {
                   $state.go("tab.venuePromotions", { "venue_id": 1 });
@@ -169,14 +181,6 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
             map: map
           });
 
-          var marker = new google.maps.Marker({
-            position: $scope.currentLatLng,
-
-            map: map,
-            title: 'I am here'
-          });
-
-
           $scope.map = map;
             $scope.queryVenues(42.3499958, -71.0656288)
               .then(function(data){
@@ -185,19 +189,14 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                 for(var i=0; i< $scope.venueList.length; i++){
                   $scope.venue = $scope.venueList[i];
                   var venueLatLng = new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude);
-                  var goldStar = {
-                            path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
-                            fillColor: 'yellow',
-                            fillOpacity: 0.8,
-                            scale: .1,
-                            strokeColor: 'gold',
-                            strokeWeight: 14
-                          };
+
                   var marker = new google.maps.Marker({
                     position: venueLatLng,
-                    icon: goldStar,
                     map: $scope.map,
-                    title: '$scope.venueList[i].name'
+                    title: '$scope.venueList[i].name',
+                    icon: '',
+                    labelContent: '<i class="fa fa-send fa-3x" style="color:rgba(153,102,102,0.8);"></i>',
+                    labelAnchor: new google.maps.Point(22, 50)
                   });
 
                   marker.addListener('click', function() {
