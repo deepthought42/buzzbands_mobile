@@ -146,7 +146,8 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                   position: venueLatLng,
                   map: $scope.map,
                   title: $scope.venueList[i].name,
-                  icon: 'https://s3-us-west-2.amazonaws.com/hypedrive.io/images/lightning_icon_pink2.png'
+                  //icon: 'https://s3-us-west-2.amazonaws.com/hypedrive.io/images/lightning_icon_pink2.png'
+                  icon: '/img/lightning_icon_pink2.png'
                 });
 
 /*
