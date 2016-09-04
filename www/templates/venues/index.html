@@ -5,14 +5,14 @@
                       class="item-thumbnail-left"
                       id="venues-list-item5"
                       ui-sref="tab.venuePromotions">
-                <img ng-src="{{venue.url !== undefined ? venue.url : '/www/img/venue_placeholder.png'}}"/>
+                <img ng-src="{{venue.url !== undefined ? venue.url : '/img/venue_placeholder.png'}}"/>
 
                 <div class="col col-70">
 
-                  <p style="font-size:12pt">{{venue.name}}</p>
-                  <p style="font-size:10pt">{{venue.address}}</p>
-                  <p style="font-size:10pt">{{venue.city}}, {{venue.state}} {{venue.zip_code}}
-                  <p style="font-size:10pt">{{venue.phone || "(xxx)xxx-xxx"}}
+                  <p style="font-size:11pt">{{venue.name}}</p>
+                  <p style="font-size:9pt">{{venue.address}}</p>
+                  <p style="font-size:9pt">{{venue.city}}, {{venue.state}} {{venue.zip_code}}
+                  <p style="font-size:9pt">{{venue.phone || "(xxx)xxx-xxx"}}
                 </div>
 
                 <div class="text-left" style="font-size: 10pt;position:absolute; right:0px; top: 25%">
@@ -26,13 +26,13 @@
             <ion-item class="item-thumbnail-left"
                       id="venues-list-item"
                       ui-sref="tab.venuePromotions">
-                <img src="www/img/venue_placeholder.png"/>
+                <img class="venueLogo" ng-src="/img/venue_placeholder.png" style="top:15%;"/>
 
                   <div class="col col-70">
-                    <p style="font-size:12pt">Boston Beer Works</p>
-                    <p style="font-size:10pt">10-12 landsdown st</p>
-                    <p style="font-size:10pt">Boston, MA 02115 </p>
-                    <p style="font-size:10pt">(xxx)xxx-xxxx</p>
+                    <p style="font-size:11pt">Boston Beer Works</p>
+                    <p style="font-size:9pt">10-12 landsdown st</p>
+                    <p style="font-size:9pt">Boston, MA 02115 </p>
+                    <p style="font-size:9pt">(xxx)xxx-xxxx</p>
                   </div>
                  <div class="text-left" style="font-size: 10pt;position:absolute; right:0px; top: 25%">
                    1 promo
