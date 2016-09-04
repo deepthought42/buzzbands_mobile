@@ -13,6 +13,9 @@ venue.config(['$stateProvider',
             templateUrl: 'templates/promotions/index.html',
             controller: 'VenuePromotionsIndexController'
           }
+        },
+        params: {
+          mode: null
         }
       })
       .state('tab.venuesMap', {
@@ -39,11 +42,17 @@ venue.config(['$stateProvider',
         views: {
           'tab-venuesDetails': {
             templateUrl: 'templates/venues/details.html',
-            controller: 'VenueDetailsController'
+            controller: 'VenueDetailsController',
+            params: {
+              mode: null
+            }
           },
           'tab-venuePromotions': {
-            templateUrl: 'templates/venues/promotions.html',
-            controller: 'VenuePromotionsController'
+            templateUrl: 'templates/venues/details.html',
+            controller: 'VenuePromotionsController',
+            params: {
+              mode: null
+            }
           }
         }
       });
@@ -152,7 +161,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 */
 
                 marker.addListener('click', function() {
-                  $state.go("tab.venuePromotions", { "venue_id": 1 });
+                  $state.go("tab.venueDetails", { "venue_id": 1 , "mode": 'stats'});
                 });
               }
             });
@@ -202,7 +211,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                   marker.addListener('click', function() {
                     //map.setZoom(8);
                     //map.setCenter(marker.getPosition());
-                    $state.go("tab.venuePromotions", { "venue_id": $scope.venue.id });
+                    $state.go("tab.venueDetails", { "venue_id": $scope.venue.id, "mode": 'stats' });
                   });
                 }
               });
@@ -358,20 +367,21 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
       };
 
       $scope.showVenuePromotions = function(venue_id){
-        $state.go("tab.venuePromotions", { "venue_id": venue_id });
+        $state.go("tab.venueDetails", { "venue_id": venue_id, "mode": 'promotions' });
       }
 
 
       this._init();
 }]);
 
-venue.controller('VenuePromotionsIndexController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
+venue.controller('VenuePromotionsController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
   function($rootScope, $scope, VenuePromotion, stateParams, $localStorage, $location) {
 
     this._init = function(){
         $scope.errors = [];
         $localStorage.venue_id = stateParams.venue_id;
 
+        $scope.mode = stateParams.mode;
         $scope.rating = {};
         $scope.rating.rate = 3;
         $scope.rating.max = 5;
@@ -380,6 +390,14 @@ venue.controller('VenuePromotionsIndexController', ['$rootScope', '$scope', 'Ven
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
       viewData.enableBack = true;
     });
+
+    $scope.showVenueStats = function(){
+      $scope.mode = "stats";
+    }
+
+    $scope.showVenuePromotions = function(){
+      $scope.mode = "promotions";
+    }
 
     VenuePromotion.query({venue_id: $localStorage.venue_id}).$promise
       .then(function(data){

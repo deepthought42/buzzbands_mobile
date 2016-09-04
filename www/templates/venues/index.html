@@ -14,33 +14,15 @@
                     </div>
 
                     <div class="col col-50">
-                      <div class="row text-right">
-                        <p>{{venue.promo_count}}</p>
+                      <div class="row text-left">
+                        <p>{{venue.promo_count}} promotions</p>
                       </div>
 
-                      <div class="row text-right">
-                         <p>{{venue.distance}} miles</p>
+                      <div class="row text-left">
+                         <p>{{venue.distance | number:1}} miles</p>
                       </div>
                     </div>
                  </div>
-            </ion-item>
-            <ion-item class="item-thumbnail-left" id="venues-list-item6">
-              <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
-                   on-tap="setMainAdLocation(venue.ad_location)"/>
-              <div class="row">
-                 <div class="col col-50">
-                     <div class="row">Royale</div>
-                     <div class="row">125 main st</div>
-
-                 </div>
-                 <div class="col col-50">
-                   <div class="row text-right"><p>32 promos</p></div>
-                   <div class="row text-right">
-                      <p>.2 miles</p>
-                   </div>
-                 </div>
-              </div>
-
             </ion-item>
         </ion-list>
     </ion-content>
