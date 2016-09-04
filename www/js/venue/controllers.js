@@ -338,6 +338,8 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
         $ionicLoading.hide();
       })
       .catch(function(data){
+        $ionicLoading.hide();
+
         $scope.errors.push("Error getting venues");
       });
 
