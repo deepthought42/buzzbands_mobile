@@ -5,9 +5,9 @@
                       class="item-thumbnail-left"
                       id="venues-list-item5"
                       ui-sref="tab.venuePromotions">
-                <img src="{{venue.ad_location !== undefined ? venue.ad_location : '/img/venue_placeholder.png'}}"/>
+                <img ng-src="{{venue.ad_location !== undefined ? venue.ad_location : '../../img/venue_placeholder.png'}}"/>
 
-                 <div class="row">
+                 <div class="row" style="padding:0px; margin:0px">
                     <div class="col col-80">
                         <p style="font-size:12pt">{{venue.name}}</p>
                         <p style="font-size:8pt">{{venue.address}}</p>
@@ -20,9 +20,8 @@
                  </div>
             </ion-item>
 
-            <ion-item
-                      class="item-thumbnail-left"
-                      id="venues-list-item5"
+            <ion-item class="item-thumbnail-left"
+                      id="venues-list-item"
                       ui-sref="tab.venuePromotions">
                 <img ng-src="{{venue.ad_location !== undefined ? venue.ad_location : '/img/venue_placeholder.png'}}"/>
 
@@ -32,11 +31,11 @@
                         <p style="font-size:8pt">10-12 landsdown st</p>
                     </div>
 
-                    <div class="col col-20 text-right" style="font-size:8pt">
+                    <div class="col col-20 text-right" style="font-size:6pt">
                         <p>1 promos</p>
                         <p>1.3432 | number:2}} mi</p>
                     </div>
-                 </div>
+                 </row>
             </ion-item>
         </ion-list>
     </ion-content>
