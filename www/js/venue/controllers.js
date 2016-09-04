@@ -191,7 +191,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           });
 
           $scope.map = map;
-            $scope.queryVenues(42.3499958, -71.0656288)
+            $scope.queryVenues(42.3499958, -71.0656288).$promise
               .then(function(data){
                 console.log("successfully queried venues :: "+data);
                 $scope.venueList = data;
@@ -347,6 +347,8 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
         $ionicLoading.hide();
       })
       .catch(function(data){
+        $ionicLoading.hide();
+
         $scope.errors.push("Error getting venues");
       });
 

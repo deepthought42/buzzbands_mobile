@@ -5,22 +5,17 @@
                       class="item-thumbnail-left"
                       id="venues-list-item5"
                       ui-sref="tab.venuePromotions">
-                <img ng-src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"/>
+                <img ng-src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_placeholder.png'}}"/>
 
                  <div class="row">
-                    <div class="col col-50">
-                        <div class="row">{{venue.name}}</div>
-                        <div class="row">{{venue.address}}</div>
+                    <div class="col col-90">
+                        <p style="font-size:14pt">{{venue.name}}</p>
+                        <p style="font-size:8pt">{{venue.address}}</p>
                     </div>
 
-                    <div class="col col-50">
-                      <div class="row text-left">
-                        <p>{{venue.promo_count}} promotions</p>
-                      </div>
-
-                      <div class="row text-left">
-                         <p>{{venue.distance | number:1}} miles</p>
-                      </div>
+                    <div class="col col-10 text-right" style="font-size:8pt">
+                        <p>{{venue.promo_count}} promos</p>
+                        <p>{{venue.distance | number:1}} mi</p>
                     </div>
                  </div>
             </ion-item>
