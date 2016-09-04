@@ -5,7 +5,7 @@
                       class="item-thumbnail-left"
                       id="venues-list-item5"
                       ui-sref="tab.venuePromotions">
-                <img ng-src="{{venue.ad_location !== undefined ? venue.ad_location : '../../img/venue_placeholder.png'}}"/>
+                <img ng-src="{{venue.url !== undefined ? venue.url : '/android_asset/www/img/venue_placeholder.png'}}"/>
 
                 <div class="col col-70">
 
@@ -26,7 +26,7 @@
             <ion-item class="item-thumbnail-left"
                       id="venues-list-item"
                       ui-sref="tab.venuePromotions">
-                <img ng-src="{{venue.ad_location !== undefined ? venue.ad_location : '/img/venue_placeholder.png'}}"/>
+                <img ng-src="{{venue.ad_location !== undefined ? venue.ad_location : '../../img/venue_placeholder.png'}}"/>
 
                   <div class="col col-70">
                     <p style="font-size:12pt">Boston Beer Works</p>
