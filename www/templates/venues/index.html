@@ -9,35 +9,28 @@
 
                  <div class="row">
                     <div class="col col-90">
-                        <div class="row">{{venue.name}}</div>
-                        <div class="row">{{venue.address}}</div>
+                        <p style="font-size:14pt">{{venue.name}}</p>
+                        <p style="font-size:8pt">{{venue.address}}</p>
                     </div>
 
-                    <div class="col col-10">
-                      <div class="row text-right">
-                        <p>{{venue.promo_count}}</p>
-                      </div>
-
-                      <div class="row text-right">
-                         <p>{{venue.distance}} miles</p>
-                      </div>
+                    <div class="col col-xs-10  text-right" style="font-size:8pt">
+                      <p>{{venue.promo_count}}</p>
+                      <p>{{venue.distance}} miles</p>
                     </div>
                  </div>
             </ion-item>
             <ion-item class="item-thumbnail-left" id="venues-list-item6">
               <img src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"
                    on-tap="setMainAdLocation(venue.ad_location)"/>
-              <div class="row">
-                 <div class="col col-90">
-                     <div class="row">Royale</div>
-                     <div class="row">125 main st</div>
-
+              <div class="row" >
+                 <div class="col col-xs-90">
+                       <p style="font-size:14pt">Royale</p>
+                       <p style="font-size:8pt">125 Landsdown street</p>
+                       <p style="font-size:8pt">1-111-111-1111</p>
                  </div>
-                 <div class="col col-10">
-                   <div class="row text-right"><p>32 promos</p></div>
-                   <div class="row text-right">
+                 <div class="col col-xs-10  text-right" style="font-size:8pt">
+                     <p>32 promos</p>
                       <p>.2 miles</p>
-                   </div>
                  </div>
               </div>
 
