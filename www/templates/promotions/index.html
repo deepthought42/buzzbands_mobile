@@ -8,7 +8,7 @@
             <ion-item ng-repeat="promotion in promotionList"
                       class="item-thumbnail-left"
                       id="promotions-list-item5">
-                <img ng-src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
+                <img ng-src="{{promotion.ad_location !== undefined ? promotion.ad_location : '/img/promotion_placeholder.png'}}"
                      on-tap="goToPromotionDetails(promotion)"/>
 
                  <div class="row">
@@ -20,7 +20,7 @@
             </ion-item>
 
             <ion-item class="item-thumbnail-left" id="promotions-list-item6">
-              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_img_missing.jpg'}}"
+              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_placeholder.png'}}"
                    on-tap="setMainAdLocation(promotion.ad_location)"/>
               <div class="row">
                 <div class="col col-100">
