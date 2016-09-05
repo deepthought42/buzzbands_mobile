@@ -25,9 +25,7 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
      */
     this.init = function(){
       $scope.promotionLoaded = true;
-      $scope.main_ad_location = promotions[0].ad_location;
       $scope.promotionList = $scope.getPromotionList();
-      $localStorage.venue_id = $stateParams.venue_id;
 
       $scope.rating = {};
       $scope.rating.rate = 3;
@@ -76,6 +74,6 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
 
 .controller('PromotionDetailCtrl',['$scope', '$stateParams', '$state', 'Promotion', '$location',
   function($scope, $stateParams, $state, Promotion, $location) {
-    
+
   }
 ]);

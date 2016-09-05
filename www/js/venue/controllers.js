@@ -25,11 +25,10 @@ venue.config(['$stateProvider',
           }
         }
       })
-
       .state('tab.venueDetails', {
-        url: 'venueDetails',
+        url: '/venueDetails',
         views: {
-          'tab-venuePromotions': {
+          'tab-venuesList': {
             templateUrl: 'templates/venues/details.html',
             controller: 'VenuePromotionsController'
           }
@@ -51,36 +50,6 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 
     function initialize() {
       $scope.errors = [];
-        //var myLatlng = new google.maps.LatLng(-71.0656288,42.3499958);
-
-
-        //Marker + infowindow + angularjs compiled ng-click
-  /*      var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-        var compiled = $compile(contentString)($scope);
-
-        var circle = new google.maps.Circle({
-          center: myLatlng,
-          radius: 300,
-          strokeColor : '#AA00FF',
-          strokeWidth: 5,
-          fillColor : '#880000',
-          map: map
-        });
-*/
-/*        var infowindow = new google.maps.InfoWindow({
-          content: compiled[0]
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-        });
-
-        $scope.map = map;
-
-        if(!$scope.map) {
-          return;
-        }
-*/
 
         $scope.loading = $ionicLoading.show({
           content: 'Getting current location...',
@@ -182,8 +151,6 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                     labelAnchor: new google.maps.Point(22, 50)
                   });
                   $scope.attachVenue(marker, $scope.venueList[i], 'promotions');
-                  //marker.set('venue', $scope.venueList[i]);
-
 
                 }
               });
@@ -330,7 +297,7 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
 
 venue.controller('VenuePromotionsController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
   function($rootScope, $scope, VenuePromotion, stateParams, $localStorage, $location) {
-
+    console.log("DETAILS!");
     this._init = function(){
         $scope.errors = [];
         $localStorage.venue =  stateParams.venue;

@@ -73,6 +73,16 @@ function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         controller: 'GeoCtrl'
       }
     }
+  })
+
+  .state('tab.promotions', {
+    url: 'promotions',
+    views: {
+      'tab-promotions': {
+        templateUrl: 'templates/promotions/index.html',
+        controller: 'PromotionIndexCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback

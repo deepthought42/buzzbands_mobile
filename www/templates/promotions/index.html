@@ -18,21 +18,11 @@
                    </div>
                  </div>
                  <div class="text-left" style="font-size: 10pt;position:absolute; right:0px; top: 25%">
-                         ${{promotion.price}}
-                     </div>
-                  </div>
-            </ion-item>
-
-            <ion-item class="item-thumbnail-left" id="promotions-list-item6">
-              <img src="{{promotion.ad_location !== undefined ? promotion.ad_location : 'img/promotion_placeholder.png'}}"
-                   on-tap="setMainAdLocation(promotion.ad_location)"/>
-              <div class="row">
-                <div class="col col-100">
-                  <h2>$5 Corona bucket</h2>
-                  <rating ng-model="rating.rate" max="rating.max" class="rating"></rating>
-                </div>
+                     ${{promotion.price}}
+                 </div>
               </div>
             </ion-item>
+
         </ion-list>
     </ion-content>
 </ion-view>
