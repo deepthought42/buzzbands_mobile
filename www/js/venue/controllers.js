@@ -65,7 +65,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 
           var mapOptions = {
             center: $scope.currentLatLng,
-            zoom: 13,
+            zoom: 12,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControl: false,
             streetViewControl: false,
@@ -114,8 +114,11 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 
           var mapOptions = {
             center: $scope.currentLatLng,
-            zoom: 13,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeControl: false,
+            streetViewControl: false,
+            rotateControl: false
           };
 
           var map = new google.maps.Map(document.getElementById("map"),
@@ -297,7 +300,6 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
 
 venue.controller('VenuePromotionsController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
   function($rootScope, $scope, VenuePromotion, stateParams, $localStorage, $location) {
-    console.log("DETAILS!");
     this._init = function(){
         $scope.errors = [];
         $localStorage.venue =  stateParams.venue;
@@ -318,6 +320,10 @@ venue.controller('VenuePromotionsController', ['$rootScope', '$scope', 'VenuePro
 
     $scope.showVenuePromotions = function(){
       $scope.mode = "promotions";
+    }
+
+    $scope.goToPromotionDetails = function(promotion){
+      $state.go("tab.promotionDetails", {"promotion": promotion});
     }
 
     this._init();

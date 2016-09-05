@@ -5,7 +5,7 @@
                       class="item-thumbnail-left"
                       id="venues-list-item5"
                       ui-sref="tab.venueDetails({venue: venue, mode: 'stats'})">
-                <img ng-src="{{venue.url !== undefined && venue.url !==null ? venue.url : 'img/venue_placeholder.png'}}"/>
+                <img ng-src="{{venue.logo_url !== undefined && venue.logo_url !==null ? venue.logo_url : 'img/venue_placeholder.png'}}"/>
 
                 <div class="col col-70">
 
@@ -16,11 +16,11 @@
                 </div>
 
                 <div class="text-left" style="font-size: 10pt;position:absolute; right:0px; top: 25%">
-                        {{venue.promo_count}} promos
-                        <br />
-                        {{venue.distance | number:1}} mi
-                    </div>
-                 </div>
+                      {{venue.promo_count}} promos
+                      <br />
+                      {{venue.distance | number:1}} mi
+                  </div>
+               </div>
             </ion-item>
         </ion-list>
     </ion-content>

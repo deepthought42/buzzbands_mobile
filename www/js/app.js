@@ -15,7 +15,7 @@ angular.module('hypedrive_mobile', ['ionic',
                                     'ngCordova',
                                     'ngStorage',
                                     'geolocation.controllers',
-                                  'ionic.rating'])
+                                    'ionic.rating'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -73,19 +73,9 @@ function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         controller: 'GeoCtrl'
       }
     }
-  })
-
-  .state('tab.promotions', {
-    url: 'promotions',
-    views: {
-      'tab-promotions': {
-        templateUrl: 'templates/promotions/index.html',
-        controller: 'PromotionIndexCtrl'
-      }
-    }
   });
-
+  
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/venuesMap');
+  $urlRouterProvider.otherwise('/promotions');
 
 }]);
