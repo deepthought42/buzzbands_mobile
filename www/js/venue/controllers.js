@@ -357,7 +357,6 @@ venue.controller('VenuePromotionsController', ['$rootScope', '$scope', 'VenuePro
 
     VenuePromotion.query({venue_id: $scope.venue.id}).$promise
       .then(function(data){
-        alert("successfully queried venue promotions :: "+data);
         $scope.promotionList = data;
         //$scope.main_ad_location = data[0].ad_location;
       })
