@@ -34,3 +34,10 @@ ul.rating li i {
 .rating {
   color: #de519b !important;
 }
+
+.header-img {
+  background-image: url('/img/hypedrive_polygon_bar.png') !important ;
+  background-repeat: no-repeat !important;
+  background-size: 80%, 50% !important;
+  background-position: right !important;
+}
