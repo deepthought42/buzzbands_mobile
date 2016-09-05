@@ -31,21 +31,18 @@ venue.config(['$stateProvider',
         views: {
           'tab-venuesDetails': {
             templateUrl: 'templates/venues/details.html',
-            controller: 'VenueDetailsController',
-            params: {
-              mode: null
-            }
+            controller: 'VenueDetailsController'
           },
           'tab-venuePromotions': {
             templateUrl: 'templates/venues/details.html',
-            controller: 'VenuePromotionsController',
-
+            controller: 'VenuePromotionsController'
           }
         },
         params: {
-          mode: 'stats',
-          venue: null
+          venue: null,
+          mode: 'stats'
         }
+
       });
   }
 ]);
@@ -140,27 +137,8 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                   //icon: 'https://s3-us-west-2.amazonaws.com/hypedrive.io/images/lightning_icon_pink2.png'
                   icon: 'img/lightning_icon_pink2.png'
                 });
+                $scope.attachVenue(marker, $scope.venueList[i], 'promotions');
 
-/*
-                var marker = new RichMarker({
-                        position: new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude),
-                        map: $scope.map,
-                        draggable: false,
-                        flat:true,
-                        anchor: RichMarkerPosition.MIDDLE,
-                        content: '<ion-icon class="flash"></ion-icon>'
-                    });
-*/
-
-                marker.addListener('click', function(data) {
-                  alert("clicing on venue with id :: " + Object.keys(data));
-                  $state.go("tab.venueDetails",
-                    {
-                      "venue": data ,
-                      "mode": 'stats'
-                    }
-                  );
-                });
               }
             });
         }, function(error) {
@@ -194,29 +172,40 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                 console.log("successfully queried venues :: "+data);
                 $scope.venueList = data;
                 for(var i=0; i< $scope.venueList.length; i++){
-                  $scope.venue = $scope.venueList[i];
+                  //$scope.venue = $scope.venueList[i];
                   var venueLatLng = new google.maps.LatLng($scope.venueList[i].latitude, $scope.venueList[i].longitude);
 
                   var marker = new google.maps.Marker({
                     position: venueLatLng,
                     map: $scope.map,
-                    title: '$scope.venueList[i].name',
+                    title: $scope.venueList[i].name,
                     icon: '',
                     labelContent: '<i class="fa fa-send fa-3x" style="color:rgba(153,102,102,0.8);"></i>',
                     labelAnchor: new google.maps.Point(22, 50)
                   });
+                  $scope.attachVenue(marker, $scope.venueList[i], 'promotions');
+                  //marker.set('venue', $scope.venueList[i]);
 
-                  marker.addListener('click', function() {
-                    console.log("clicing on venue with id :: " + $scope.venueList[i]);
 
-                    $state.go("tab.venueDetails", { "venue_id": $scope.venue.id, "mode": 'promotions' });
-                  });
                 }
               });
         });
       }
       google.maps.event.addDomListener(window, 'load', initialize);
 
+      // Attaches an info window to a marker with the provided message. When the
+      // marker is clicked, the info window will open with the secret message.
+      $scope.attachVenue = function(marker, venue, mode) {
+        marker.addListener('click', function() {
+          console.log('clicking on '+venue.name);
+          $state.go("tab.venueDetails",
+            {
+              "venue": venue,
+              "mode": mode
+            }
+          );
+        });
+      }
 
       $scope.centerOnMe = function() {
 
@@ -334,8 +323,6 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
       };
 
       $scope.showVenuePromotions = function(venue){
-        console.log("clicing on venue with id :: " + venue);
-
         $state.go("tab.venueDetails", { "venue": venue, "mode": 'promotions' });
       }
 
@@ -345,13 +332,14 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
 
 venue.controller('VenuePromotionsController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
   function($rootScope, $scope, VenuePromotion, stateParams, $localStorage, $location) {
-
+    console.log("VENUE PROMOS");
     this._init = function(){
         $scope.errors = [];
         $scope.venue = stateParams.venue;
 
         console.log(Object.keys(stateParams));
         console.log(stateParams.venue);
+        console.log(stateParams.mode);
         $scope.mode = stateParams.mode;
         $scope.rating = {};
         $scope.rating.rate = 3;
