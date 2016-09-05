@@ -1,41 +1,42 @@
 <ion-view title="Venue Details" id="venueDetailsPage">
   <ion-content padding="true" class="has-header">
       <div class="list card" id="venueDetails-card23">
-          <ion-item class="item-thumbnail-left" id="venueDetails-list-item23">
-            <img ng-src="{{venue.ad_location !== undefined ? venue.ad_location : 'img/venue_img_missing.jpg'}}"/>
+        <ion-item class="item-thumbnail-left" id="venueDetails-list-item23">
+          <img ng-src="{{venue.url !== undefined && venue.url != null ? venue.ad_location : 'img/venue_img_missing.jpg'}}"/>
 
-              <h2>Royale</h2>
-              <p>1 Main st.</p>
-          </ion-item>
-          <div id="venueDetails-button-bar1" class="button-bar">
-              <button id="venueDetails-button2" class="button button-stable  button-block" ng-class="mode=='stats' ? button-dark : button-stable" ng-click="showVenueStats()">Stats</button>
-              <button id="venueDetails-button1" class="button button-dark  button-block" ng-class="mode=='promotion' ? button-dark : button-stable" ng-click="showVenuePromotions()">Promotions</button>
-          </div>
-          <div class="row">
-             <div class="col col-50 text-center">
-               Stat1
-             </div>
-             <div class="col col-50 text-center">
-               Stat2
-             </div>
-          </div>
-          <div class="row">
-             <div class="col col-50 text-center">
-               Stat3
-             </div>
-             <div class="col col-50 text-center">
-               Stat4
-             </div>
-          </div>
-          <div class="row">
-             <div class="col col-50 text-center">
-                Stat5
-             </div>
-             <div class="col col-50 text-center">
-               Stat6
-             </div>
-          </div>
+            <h2>{{venue.name}}</h2>
+            <p>{{venue.address}}</p>
+            <p>{{venue.city}}, {{venue.state}} {{venue.zip_code}}</p>
 
+        </ion-item>
+        <div id="venueDetails-button-bar" class="button-bar">
+            <button id="venueDetails-button2" class="button button-stable  button-block" ng-class="mode=='stats' ? button-dark : button-stable" ng-click="showVenueStats()">Stats</button>
+            <button id="venueDetails-button1" class="button button-dark  button-block" ng-class="mode=='promotion' ? button-dark : button-stable" ng-click="showVenuePromotions()">Promotions</button>
+        </div>
+        <div class="row">
+           <div class="col col-50 text-center">
+             Stat1
+           </div>
+           <div class="col col-50 text-center">
+             Stat2
+           </div>
+        </div>
+        <div class="row">
+           <div class="col col-50 text-center">
+             Stat3
+           </div>
+           <div class="col col-50 text-center">
+             Stat4
+           </div>
+        </div>
+        <div class="row">
+           <div class="col col-50 text-center">
+              Stat5
+           </div>
+           <div class="col col-50 text-center">
+             Stat6
+           </div>
+        </div>
       </div>
   </ion-content>
 </ion-view>
