@@ -36,7 +36,7 @@ ul.rating li i {
 }
 
 .header-img {
-  background-image: url('/img/hypedrive_polygon_bar.png') !important ;
+  background-image: url('../img/hypedrive_polygon_bar.png') !important ;
   background-repeat: no-repeat !important;
   background-size: 80%, 50% !important;
   background-position: right !important;
