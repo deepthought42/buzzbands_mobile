@@ -10,32 +10,54 @@
 
         </ion-item>
         <div id="venueDetails-button-bar" class="button-bar">
-            <button id="venueDetails-button2" class="button button-stable  button-block" ng-class="mode=='stats' ? button-dark : button-stable" ng-click="showVenueStats()">Stats</button>
-            <button id="venueDetails-button1" class="button button-dark  button-block" ng-class="mode=='promotion' ? button-dark : button-stable" ng-click="showVenuePromotions()">Promotions</button>
+            <button id="venueDetails-button2" class="button button-block" ng-class="{'button-dark' : mode=='stats' , 'button-stable': mod!='stats'}" ng-click="mode='stats'">Stats</button>
+            <button id="venueDetails-button1" class="button button-block"
+                    ng-class="{'button-dark' : mode=='promotions' , 'button-stable': mod!='promotions'}"
+                    ng-click="mode='promotions'">Promotions</button>
         </div>
-        <div class="row">
-           <div class="col col-50 text-center">
-             Stat1
-           </div>
-           <div class="col col-50 text-center">
-             Stat2
-           </div>
-        </div>
-        <div class="row">
-           <div class="col col-50 text-center">
-             Stat3
-           </div>
-           <div class="col col-50 text-center">
-             Stat4
-           </div>
-        </div>
-        <div class="row">
-           <div class="col col-50 text-center">
-              Stat5
-           </div>
-           <div class="col col-50 text-center">
-             Stat6
-           </div>
+
+          <ion-list id="promotions-list" ng-show="mode =='promotions'">
+              <ion-item ng-repeat="promotion in promotionList"
+                        class="item-thumbnail-left"
+                        id="promotions-list-item5">
+                  <img ng-src="{{promotion.ad_location !== undefined && promotion.ad_location != null ? promotion.ad_location : 'img/promotion_placeholder.png'}}"
+                       on-tap="goToPromotionDetails(promotion)"/>
+
+                   <div class="row">
+                     <div class="col col-100">
+                       <h2>{{promotion.name}}</h2>
+                       <p>{{promotion.description}}</p>
+                     </div>
+                   </div>
+              </ion-item>
+
+        </ion-list>
+
+        <div ng-show="mode=='stats'">
+          <div class="row">
+             <div class="col col-50 text-center">
+               Stat1
+             </div>
+             <div class="col col-50 text-center">
+               Stat2
+             </div>
+          </div>
+          <div class="row">
+             <div class="col col-50 text-center">
+               Stat3
+             </div>
+             <div class="col col-50 text-center">
+               Stat4
+             </div>
+          </div>
+          <div class="row">
+             <div class="col col-50 text-center">
+                Stat5
+             </div>
+             <div class="col col-50 text-center">
+               Stat6
+             </div>
+          </div>
         </div>
       </div>
   </ion-content>

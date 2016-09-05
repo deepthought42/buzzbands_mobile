@@ -29,10 +29,6 @@ venue.config(['$stateProvider',
       .state('tab.venueDetails', {
         url: 'venueDetails',
         views: {
-          'tab-venuesDetails': {
-            templateUrl: 'templates/venues/details.html',
-            controller: 'VenueDetailsController'
-          },
           'tab-venuePromotions': {
             templateUrl: 'templates/venues/details.html',
             controller: 'VenuePromotionsController'
@@ -100,7 +96,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 
           var mapOptions = {
             center: $scope.currentLatLng,
-            zoom: 12,
+            zoom: 13,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControl: false,
             streetViewControl: false,
@@ -149,7 +145,7 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 
           var mapOptions = {
             center: $scope.currentLatLng,
-            zoom: 17,
+            zoom: 13,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
 
@@ -160,9 +156,11 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
           var circle = new google.maps.Circle({
             center: $scope.currentLatLng,
             radius: 3220,   //meters in 2 miles
-            strokeColor : '#FE7155',
-            strokeWeight: 20,
-            fillColor : '#FEB5A6',
+            strokeColor : '#de519b',
+            strokeWeight: 1,
+            strokeOpacity: .9,
+            fillColor : '#de519b',
+            fillOpacity: .1,
             map: map
           });
 
@@ -332,14 +330,11 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
 
 venue.controller('VenuePromotionsController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
   function($rootScope, $scope, VenuePromotion, stateParams, $localStorage, $location) {
-    console.log("VENUE PROMOS");
+
     this._init = function(){
         $scope.errors = [];
+        $localStorage.venue =  stateParams.venue;
         $scope.venue = stateParams.venue;
-
-        console.log(Object.keys(stateParams));
-        console.log(stateParams.venue);
-        console.log(stateParams.mode);
         $scope.mode = stateParams.mode;
         $scope.rating = {};
         $scope.rating.rate = 3;
@@ -358,52 +353,15 @@ venue.controller('VenuePromotionsController', ['$rootScope', '$scope', 'VenuePro
       $scope.mode = "promotions";
     }
 
-    VenuePromotion.query({venue_id: $scope.venue_id}).$promise
+    this._init();
+
+    VenuePromotion.query({venue_id: $scope.venue.id}).$promise
       .then(function(data){
-        //alert("successfully queried venue promotions :: "+data);
-        $scope.promotions = data;
+        alert("successfully queried venue promotions :: "+data);
+        $scope.promotionList = data;
         //$scope.main_ad_location = data[0].ad_location;
       })
       .catch(function(data){
         $scope.errors.push("Error getting venues.");
       });
-
-    this._init();
-}]);
-venue.controller('VenueDetailsController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
-  function($rootScope, $scope, VenuePromotion, stateParams, $localStorage, $location) {
-    console.log("venue details");
-    this._init = function(){
-        $scope.errors = [];
-        $localStorage.venue_id = stateParams.venue_id;
-        console.log(stateParams.venue);
-        $scope.mode = stateParams.mode;
-        $scope.rating = {};
-        $scope.rating.rate = 3;
-        $scope.rating.max = 5;
-    }
-
-    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
-      viewData.enableBack = true;
-    });
-
-    $scope.showVenueStats = function(){
-      $scope.mode = "stats";
-    }
-
-    $scope.showVenuePromotions = function(){
-      $scope.mode = "promotions";
-    }
-
-    VenuePromotion.query({venue_id: $localStorage.venue_id}).$promise
-      .then(function(data){
-        //alert("successfully queried venue promotions :: "+data);
-        $scope.promotions = data;
-        //$scope.main_ad_location = data[0].ad_location;
-      })
-      .catch(function(data){
-        $scope.errors.push("Error getting venues.");
-      });
-
-    this._init();
 }]);
