@@ -38,7 +38,7 @@ angular.module('hypedrive_mobile', ['ionic',
 
 .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider',
 function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-
+  $ionicConfigProvider.views.maxCache(0);
   $ionicConfigProvider.tabs.position('bottom');
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
