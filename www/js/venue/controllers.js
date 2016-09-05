@@ -6,18 +6,7 @@ var venue = angular.module('buzzbands.venue.controllers',
 venue.config(['$stateProvider',
   function($stateProvider) {
     $stateProvider
-      .state('tab.venuePromotions', {
-        url: 'venues/:venue_id/promotions',
-        views: {
-          "tab-venuePromotions": {
-            templateUrl: 'templates/promotions/index.html',
-            controller: 'VenuePromotionsIndexController'
-          }
-        },
-        params: {
-          mode: null
-        }
-      })
+
       .state('tab.venuesMap', {
         url: 'venuesMap',
         views: {
@@ -38,7 +27,7 @@ venue.config(['$stateProvider',
       })
 
       .state('tab.venueDetails', {
-        url: 'venuesList',
+        url: 'venueDetails',
         views: {
           'tab-venuesDetails': {
             templateUrl: 'templates/venues/details.html',
@@ -50,10 +39,12 @@ venue.config(['$stateProvider',
           'tab-venuePromotions': {
             templateUrl: 'templates/venues/details.html',
             controller: 'VenuePromotionsController',
-            params: {
-              mode: null
-            }
+
           }
+        },
+        params: {
+          mode: 'stats',
+          venue: null
         }
       });
   }
@@ -162,7 +153,8 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 */
 
                 marker.addListener('click', function() {
-                  $state.go("tab.venueDetails", { "venue_id": 1 , "mode": 'stats'});
+                  console.log("clicing on venue with id :: " + $scope.venueList[i]);
+                  $state.go("tab.venueDetails", { "venue": $scope.venueList[i] , "mode": 'stats'});
                 });
               }
             });
@@ -210,9 +202,9 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                   });
 
                   marker.addListener('click', function() {
-                    //map.setZoom(8);
-                    //map.setCenter(marker.getPosition());
-                    $state.go("tab.venueDetails", { "venue_id": $scope.venue.id, "mode": 'stats' });
+                    console.log("clicing on venue with id :: " + $scope.venueList[i]);
+
+                    $state.go("tab.venueDetails", { "venue_id": $scope.venue.id, "mode": 'promotions' });
                   });
                 }
               });
@@ -233,31 +225,6 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
       return Venue.getNearMe({lat: latitude, lng: longitude});
     }
 
-    $scope.deleteVenue = function(venueId){
-      Venue.remove({id: venueId}).$promise
-        .then(function(data){
-          $scope.venueList = $scope.queryVenues();
-          state.go("venues");
-        })
-        .catch(function(data){
-          $scope.errors.push("Could not delete venue");
-        });
-    }
-
-    $scope.deleteVenues = function(){
-      for(var i=0; i<$scope.venueList.length; i++){
-        if($scope.venueList[i].selected){
-          Venue.remove({id: $scope.venueList[i].id}).$promise
-            .then(function(data){
-              $scope.venueList = $scope.queryVenues();
-            })
-            .catch(function(data){
-              $scope.errors.push("Error deleting venue");
-            });
-          }
-        }
-    }
-
     $scope.editVenue = function(venue){
       $scope.venueLoaded = true;
       $scope.venue = venue;
@@ -268,20 +235,12 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
       $scope.venue = {};
     }
 
-    $scope.showPromotionsList = function(venueId){
-      state.go("promotions.dashboard", {"venueId": venueId});
-    }
-
     $scope.isActive = function(object) {
       return object.active === true;
     }
 
     $scope.$on("refreshVenuesList", function(event, data){
       $scope.venueList = $scope.queryVenues();
-    })
-
-    $scope.$on("showCreateVenueView", function(event, data){
-      $scope.venueLoaded = false;
     })
 
 
@@ -369,8 +328,10 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
         return $scope.shownVenue === venue;
       };
 
-      $scope.showVenuePromotions = function(venue_id){
-        $state.go("tab.venueDetails", { "venue_id": venue_id, "mode": 'promotions' });
+      $scope.showVenuePromotions = function(venue){
+        console.log("clicing on venue with id :: " + venue);
+
+        $state.go("tab.venueDetails", { "venue": venue, "mode": 'promotions' });
       }
 
 
@@ -382,8 +343,47 @@ venue.controller('VenuePromotionsController', ['$rootScope', '$scope', 'VenuePro
 
     this._init = function(){
         $scope.errors = [];
-        $localStorage.venue_id = stateParams.venue_id;
+        $scope.venue = stateParams.venue;
 
+        console.log(Object.keys(stateParams));
+        console.log(stateParams.venue);
+        $scope.mode = stateParams.mode;
+        $scope.rating = {};
+        $scope.rating.rate = 3;
+        $scope.rating.max = 5;
+    }
+
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+      viewData.enableBack = true;
+    });
+
+    $scope.showVenueStats = function(){
+      $scope.mode = "stats";
+    }
+
+    $scope.showVenuePromotions = function(){
+      $scope.mode = "promotions";
+    }
+
+    VenuePromotion.query({venue_id: $scope.venue_id}).$promise
+      .then(function(data){
+        //alert("successfully queried venue promotions :: "+data);
+        $scope.promotions = data;
+        //$scope.main_ad_location = data[0].ad_location;
+      })
+      .catch(function(data){
+        $scope.errors.push("Error getting venues.");
+      });
+
+    this._init();
+}]);
+venue.controller('VenueDetailsController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
+  function($rootScope, $scope, VenuePromotion, stateParams, $localStorage, $location) {
+    console.log("venue details");
+    this._init = function(){
+        $scope.errors = [];
+        $localStorage.venue_id = stateParams.venue_id;
+        console.log(stateParams.venue);
         $scope.mode = stateParams.mode;
         $scope.rating = {};
         $scope.rating.rate = 3;
