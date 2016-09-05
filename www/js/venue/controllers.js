@@ -152,9 +152,14 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                     });
 */
 
-                marker.addListener('click', function() {
-                  console.log("clicing on venue with id :: " + $scope.venueList[i]);
-                  $state.go("tab.venueDetails", { "venue": $scope.venueList[i] , "mode": 'stats'});
+                marker.addListener('click', function(data) {
+                  alert("clicing on venue with id :: " + data);
+                  $state.go("tab.venueDetails",
+                    {
+                      "venue": $scope.venueList[i] ,
+                      "mode": 'stats'
+                    }
+                  );
                 });
               }
             });
