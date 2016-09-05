@@ -153,10 +153,10 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
 */
 
                 marker.addListener('click', function(data) {
-                  alert("clicing on venue with id :: " + data);
+                  alert("clicing on venue with id :: " + Object.keys(data));
                   $state.go("tab.venueDetails",
                     {
-                      "venue": $scope.venueList[i] ,
+                      "venue": data ,
                       "mode": 'stats'
                     }
                   );
