@@ -5,7 +5,7 @@
                       class="item-thumbnail-left"
                       id="venues-list-item5"
                       ui-sref="tab.venuePromotions">
-                <img ng-src="{{venue.url !== undefined ? venue.url : 'img/venue_placeholder.png'}}"/>
+                <img ng-src="{{venue.url !== undefined && venue.url !==null ? venue.url : 'img/venue_placeholder.png'}}"/>
 
                 <div class="col col-70">
 
