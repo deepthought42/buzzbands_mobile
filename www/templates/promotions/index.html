@@ -7,9 +7,10 @@
         <ion-list id="promotions-list">
             <ion-item ng-repeat="promotion in promotionList"
                       class="item-thumbnail-left"
-                      id="promotions-list-item5">
+                      ng-click="goToPromotionDetails(promotion)"
+                      on-tap="goToPromotionDetails(promotion)">
                 <img ng-src="{{promotion.ad_location !== undefined && promotion.ad_location != null ? promotion.ad_location : 'img/promotion_placeholder.png'}}"
-                     on-tap="goToPromotionDetails(promotion)"/>
+/>
 
                  <div class="row">
                    <div class="col col-100">

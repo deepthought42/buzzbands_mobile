@@ -1,16 +1,15 @@
 <ion-view title="Promotion Details" id="page6">
     <ion-content padding="true" class="has-header">
-        <h3 id="promotionDetails-heading1" style="color:#000000;text-align:center;">{{promotion.name}}</h3>
-        <div class="list card" id="promotionDetails-card21">
+        <h3 style="color:#000000;text-align:center;">{{promotion.name}}</h3>
+        <div class="list card">
             <div style="margin: 0px; line-height: 250px; text-align: center; background-color: rgb(232, 235, 239);">
                 <img class="icon ion-image" src="img/promotion_placeholder.png"/>
             </div>
-            <ion-item class="dark" id="promotionDetails-list-item15">{{promotion.description}}</ion-item>
+            <ion-item class="dark" >{{promotion.price}}</ion-item>
+            <ion-item class="dark" >{{promotion.description}}</ion-item>
 
 
-            <ion-item ng-repeat="venue in venueList"
-                      class="item-thumbnail-left"
-                      id="venues-list-item5"
+            <ion-item class="item-thumbnail-left"
                       ui-sref="tab.venueDetails({venue: venue, mode: 'stats'})">
                 <img ng-src="{{venue.logo_url !== undefined && venue.logo_url !==null ? venue.logo_url : 'img/venue_placeholder.png'}}"/>
 

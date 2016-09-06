@@ -18,7 +18,7 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
           url: 'promotionDetails',
           views: {
             'tab-promotions': {
-              templateUrl: 'templates/promotions/index.html',
+              templateUrl: 'templates/promotions/details.html',
               controller: 'PromotionDetailsCtrl'
             }
           },
@@ -53,7 +53,6 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
      * Initialize PromotionIndexCtrl.
      */
     this.init = function(){
-      $scope.promotionLoaded = true;
       $scope.promotionList = $scope.getPromotionList();
 
       $scope.rating = {};
@@ -74,8 +73,15 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
   }
 ])
 
-.controller('PromotionDetailCtrl',['$scope', '$stateParams', '$state', 'Promotion', '$location',
-  function($scope, $stateParams, $state, Promotion, $location) {
+.controller('PromotionDetailsCtrl',['$scope', '$stateParams', '$state', 'Promotion', 'Venue', '$location',
+  function($scope, $stateParams, $state, Promotion, Venue, $location) {
+    this._init = function(){
+      $scope.promotion = $stateParams.promotion;
+      $scope.venue = Venue.query({venue_id: $scope.promotion.venue_id});
 
+      console.log("PROMOTION :: " + $scope.promotion);
+    }
+
+    this._init();
   }
 ]);

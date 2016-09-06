@@ -99,8 +99,8 @@ venue.controller('VenueMapController', ['$scope', 'Venue', '$state',
                   position: venueLatLng,
                   map: $scope.map,
                   title: $scope.venueList[i].name,
-                  //icon: 'https://s3-us-west-2.amazonaws.com/hypedrive.io/images/lightning_icon_pink2.png'
-                  icon: 'img/lightning_icon_pink2.png'
+                  icon: 'https://s3-us-west-2.amazonaws.com/hypedrive.io/images/lightning_icon_pink2.png'
+                  //icon: 'img/lightning_icon_pink2.png'
                 });
                 $scope.attachVenue(marker, $scope.venueList[i], 'promotions');
 
@@ -298,8 +298,8 @@ venue.controller('VenueIndexController', ['$scope', 'Venue', 'VenuePromotion',
       this._init();
 }]);
 
-venue.controller('VenuePromotionsController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location',
-  function($rootScope, $scope, VenuePromotion, stateParams, $localStorage, $location) {
+venue.controller('VenuePromotionsController', ['$rootScope', '$scope', 'VenuePromotion', '$stateParams', '$localStorage', '$location', '$state',
+  function($rootScope, $scope, VenuePromotion, stateParams, $localStorage, $location, $state) {
     this._init = function(){
         $scope.errors = [];
         $localStorage.venue =  stateParams.venue;
