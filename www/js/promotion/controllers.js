@@ -66,6 +66,7 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
     };
 
     $scope.goToPromotionDetails = function(promotion){
+      console.log("promoitin; "+ promotion);
       $state.go("tab.promotionDetails", {"promotion": promotion});
     }
 
@@ -77,7 +78,8 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
   function($scope, $stateParams, $state, Promotion, Venue, $location) {
     this._init = function(){
       $scope.promotion = $stateParams.promotion;
-      $scope.venue = Venue.query({venue_id: $scope.promotion.venue_id});
+      console.log($scope.promotion);
+      $scope.venue = Venue.get({venue_id: $scope.promotion.venue_id});
 
       console.log("PROMOTION :: " + $scope.promotion);
     }
