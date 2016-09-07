@@ -13,19 +13,19 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
           }
         }
       })
-      $stateProvider
-        .state('tab.promotionDetails', {
-          url: 'promotionDetails',
-          views: {
-            'tab-promotions': {
-              templateUrl: 'templates/promotions/details.html',
-              controller: 'PromotionDetailsCtrl'
-            }
-          },
-          params: {
-            promotion: null
+
+      .state('tab.promotionDetails', {
+        url: 'promotionDetails',
+        views: {
+          'tab-promotions': {
+            templateUrl: 'templates/promotions/details.html',
+            controller: 'PromotionDetailsCtrl'
           }
-        });
+        },
+        params: {
+          promotion: null
+        }
+      });
     }
   ])
 

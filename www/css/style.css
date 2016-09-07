@@ -41,3 +41,7 @@ ul.rating li i {
   background-size: 80%, 50% !important;
   background-position: right !important;
 }
+
+.button-dark-pink {
+  background-color: #de519b;
+}

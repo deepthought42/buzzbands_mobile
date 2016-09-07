@@ -3,17 +3,28 @@
       <div class="list card" id="venueDetails-card23">
         <ion-item class="item-thumbnail-left" id="venueDetails-list-item23">
           <img ng-src="{{venue.logo_url !== undefined && venue.logo_url != null ? venue.logo_url : 'img/venue_placeholder.png'}}"/>
-
+          <div class="col col-70">
             <h2>{{venue.name}}</h2>
             <p>{{venue.address}}</p>
             <p>{{venue.city}}, {{venue.state}} {{venue.zip_code}}</p>
+          </div>
+          <div class="text-left" style="font-size: 10pt;position:absolute; right:0px; top: 25%">
+                {{venue.distance | number:1}} mi
+            </div>
+         </div>
 
         </ion-item>
         <div id="venueDetails-button-bar" class="button-bar">
-            <button id="venueDetails-button2" class="button button-block" ng-class="{'button-dark' : mode=='stats' , 'button-stable': mod!='stats'}" ng-click="mode='stats'">Stats</button>
+            <button id="venueDetails-button2" class="button button-block"
+                    ng-class="{'button-dark-pink' : mode=='stats' , 'button-stable': mode!='stats'}"
+                    ng-click="mode='stats'">
+                Stats
+            </button>
             <button id="venueDetails-button1" class="button button-block"
-                    ng-class="{'button-dark' : mode=='promotions' , 'button-stable': mod!='promotions'}"
-                    ng-click="mode='promotions'">Promotions</button>
+                    ng-class="{'button-dark-pink' : mode=='promotions' , 'button-stable': mode!='promotions'}"
+                    ng-click="mode='promotions'">
+                Promotions
+            </button>
         </div>
 
           <ion-list id="promotions-list" ng-show="mode =='promotions'">
@@ -36,7 +47,7 @@
         <div ng-show="mode=='stats'">
           <div class="row">
              <div class="col col-50 text-center">
-               Stat1
+               {{venue.promo_count}} promos
              </div>
              <div class="col col-50 text-center">
                Stat2
