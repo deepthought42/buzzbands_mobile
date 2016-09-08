@@ -1,24 +1,23 @@
-<ion-view title="Venues" id="Venues">
+<ion-view title="Venues" id="Venues" class="main-background">
     <ion-content padding="true" class="has-header">
-        <ion-list id="venues-list2">
+        <ion-list>
             <ion-item ng-repeat="venue in venueList"
                       class="item-thumbnail-left"
-                      id="venues-list-item5"
                       ui-sref="tab.venueDetails({venue: venue, mode: 'stats'})">
                 <img ng-src="{{venue.logo_url !== undefined && venue.logo_url !==null ? venue.logo_url : 'img/venue_placeholder.png'}}"/>
 
-                <div class="col col-70">
+                <div class="col col-70" >
 
-                  <p style="font-size:11pt">{{venue.name}}</p>
-                  <p style="font-size:9pt">{{venue.address}}</p>
-                  <p style="font-size:9pt">{{venue.city}}, {{venue.state}} {{venue.zip_code}}
-                  <p style="font-size:9pt">{{venue.phone || "(xxx)xxx-xxx"}}
+                  <p style="font-size:13pt; font-weight: bold">{{venue.name}}</p>
+                  <p style="font-size:11pt;position:relative; top: 2px">{{venue.address}}, {{venue.city}}</p>
+                  <p style="font-size:11pt;position:relative; top: 2px">{{venue.open_time || "12am"}} - {{venue.close_time || "11:59pm"}}</p>
                 </div>
 
-                <div class="text-left" style="font-size: 10pt;position:absolute; right:0px; top: 25%">
-                      {{venue.promo_count}} promos
-                      <br />
+                <div class="text-right" style="font-size: 11pt; position:absolute;  right:5px; top: 12px">
                       {{venue.distance | number:1}} mi
+
+                      <br />
+                      <span style="position:relative; right: 6px">{{venue.promo_count}} <i class="ion-speakerphone" ></i></span>
                   </div>
                </div>
             </ion-item>

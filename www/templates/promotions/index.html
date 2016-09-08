@@ -2,24 +2,21 @@
 
 <!--<link href="css/promotions.css" rel="stylesheet">
 -->
-<ion-view title="Promotions" id="Promotion">
+<ion-view title="Promotions" id="PromotionIndex" class="main-background">
     <ion-content padding="true" class="has-header">
         <ion-list id="promotions-list">
             <ion-item ng-repeat="promotion in promotionList"
                       class="item-thumbnail-left"
                       ng-click="goToPromotionDetails(promotion)"
                       on-tap="goToPromotionDetails(promotion)">
-                <img ng-src="{{promotion.ad_location !== undefined && promotion.ad_location != null ? promotion.ad_location : 'img/promotion_placeholder.png'}}"
-/>
+                <img ng-src="{{promotion.ad_location !== undefined && promotion.ad_location != null ? promotion.ad_location : 'img/promotion_placeholder.png'}}"/>
 
-                 <div class="row">
-                   <div class="col col-100">
-                     <h2>{{promotion.name}}</h2>
-                     <p>{{promotion.description}}</p>
+                <div class="col col-70" >
+                     <p style="font-size:13pt; font-weight: bold">{{promotion.name}}</p>
+                     <p style="font-size:11pt;position:relative; top: 2px">${{promotion.price || "3.50"}}</p>
                    </div>
                  </div>
-                 <div class="text-left" style="font-size: 10pt;position:absolute; right:0px; top: 25%">
-                     ${{promotion.price}}
+                 <div class="text-right" style="font-size: 11pt; position:absolute;  right:5px; top: 12px">
                  </div>
               </div>
             </ion-item>
