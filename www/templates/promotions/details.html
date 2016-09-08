@@ -1,16 +1,16 @@
-<ion-view title="Promotion Details" class="main-background">
+<ion-view title="" class="main-background">
     <ion-content padding="true" class="has-header">
-        <h3 style="color:#000000;text-align:center;">{{promotion.name}}</h3>
+        <h3 class="text-center">{{promotion.name}}</h3>
         <div class="list card">
             <!--<div background-color: rgb(232, 235, 239);">-->
-                <img class="icon ion-image" src="img/promotion_placeholder.png" style="margin: 0px; line-height: 250px; text-align: center;" />
+            <img class="icon ion-image" ng-src="{{promotion.ad_location !== undefined && promotion.ad_location !==null ? promotion.ad_location : 'img/promotion_placeholder.png'}}" style="margin: 0px; width: 100%;" />
             <!--</div>-->
-            <ion-item class="dark" >${{promotion.price || "3.50"}}</ion-item>
-            <ion-item class="dark" >{{promotion.description || "Description missing"}}</ion-item>
+            <ion-item class="dark text-center" >${{promotion.price || "3.50"}}</ion-item>
+            <ion-item class="dark text-center" >{{promotion.description || "Description missing"}}</ion-item>
 
 
             <ion-item class="item-thumbnail-left"
-                      ui-sref="tab.venueDetails({venue: venue, mode: 'stats'})">
+                      ui-sref="tab.venueDetails({venue: venue, mode: 'promotions'})">
                 <img ng-src="{{venue.logo_url !== undefined && venue.logo_url !==null ? venue.logo_url : 'img/venue_placeholder.png'}}"/>
 
                 <div class="col col-70" >

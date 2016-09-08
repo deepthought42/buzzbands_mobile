@@ -35,7 +35,7 @@ venue.config(['$stateProvider',
         },
         params: {
           venue: null,
-          mode: 'stats'
+          mode: 'promotions'
         }
 
       });

@@ -3,7 +3,7 @@
         <ion-list>
             <ion-item ng-repeat="venue in venueList"
                       class="item-thumbnail-left"
-                      ui-sref="tab.venueDetails({venue: venue, mode: 'stats'})">
+                      ui-sref="tab.venueDetails({venue: venue, mode: 'promotions'})">
                 <img ng-src="{{venue.logo_url !== undefined && venue.logo_url !==null ? venue.logo_url : 'img/venue_placeholder.png'}}"/>
 
                 <div class="col col-70" >

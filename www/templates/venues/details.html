@@ -1,4 +1,4 @@
-<ion-view title="Venue Details" id="venueDetailsPage"  class="main-background">
+<ion-view title="" id="venueDetailsPage"  class="main-background">
   <ion-content padding="true" class="has-header">
       <div class="list card">
         <ion-item class="item-thumbnail-left">
@@ -36,14 +36,14 @@
           <ion-list id="promotions-list" ng-show="mode =='promotions'">
               <ion-item ng-repeat="promotion in promotionList"
                         class="item-thumbnail-left"
-                        on-tap="goToPromotionDetails(promotion)">
+                        ui-sref="tab.promotionDetails({ 'promotion': promotion})">
                   <img ng-src="{{promotion.ad_location !== undefined && promotion.ad_location != null ? promotion.ad_location : 'img/promotion_placeholder.png'}}"/>
 
-                   <div class="row">
-                     <div class="col col-100">
-                       <h2>{{promotion.name}}</h2>
-                       <p>{{promotion.description}}</p>
-                     </div>
+                  <div class="col col-70" >
+                       <p style="font-size:13pt; font-weight: bold">{{promotion.name}}</p>
+                       <p style="font-size:11pt;position:relative; top: 2px">${{promotion.price || "3.50"}}</p>
+                   </div>
+                   <div class="text-right" style="font-size: 11pt; position:absolute;  right:5px; top: 12px">
                    </div>
               </ion-item>
 
@@ -55,7 +55,7 @@
                {{venue.promo_count}} <i class="ion-speakerphone"></i>
              </div>
              <div class="col col-50 text-center">
-               Stat2
+               {{venue.num_bars || "0"}} <i class="ion-speakerphone"></i>
              </div>
           </div>
           <div class="row">

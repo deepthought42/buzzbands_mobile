@@ -4,14 +4,10 @@ Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
 <ion-nav-bar class="bar-dark header-img">
-  <!--<ion-nav-buttons side="primary">
-    <div ng-if="$location.url().includes('promotions')">
-      <button class="button button-clear" ui-sref="tab.venuesMap">
-        <i class="ion-arrow-left-c"></i> Back
-      </button>
-    </div>
-  </ion-nav-buttons>
--->
+  <ion-nav-back-button class="button-clear">
+    <i class="ion-chevron-left"></i> Back
+  </ion-nav-back-button>
+
 </ion-nav-bar>
 
 
@@ -21,13 +17,6 @@ navigation history that also transitions its views in and out.
   <ion-tab title="Scan" icon-off="ion-qr-scanner" icon-on="ion-qr-scanner" href="/scan">
     <ion-nav-view name="tab-scan"></ion-nav-view>
   </ion-tab>
-
-  <!-- Venue Promotions Tab -->
-  <!--
-  <ion-tab title="Promotions" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" ui-sref="tab.venuePromotions">
-    <ion-nav-view name="tab-venuePromotions"></ion-nav-view>
-  </ion-tab>
--->
 
   <!-- Venues Tab -->
   <ion-tab title="Map" icon-off="ion-map" icon-on="ion-map" ui-sref="tab.venuesMap">

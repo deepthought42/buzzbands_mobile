@@ -66,7 +66,6 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
     };
 
     $scope.goToPromotionDetails = function(promotion){
-      console.log("promoitin; "+ promotion);
       $state.go("tab.promotionDetails", {"promotion": promotion});
     }
 
