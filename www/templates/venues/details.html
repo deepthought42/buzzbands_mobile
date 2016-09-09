@@ -24,15 +24,15 @@
         </ion-item>
         <div id="venueDetails-button-bar" class="button-bar">
 
-          <button class="button button-block"  style="color: white !important; margin: 0px; border:0px "
+          <button class="button button-block"  style="color: white !important;font-size:13pt; margin: 0px; border:0px "
                   ng-class="{'button-dark-green' : mode!='promotions' , 'button-light-green': mode=='promotions'}"
                   ng-click="mode='promotions'">
               Promotions
           </button>
-            <button class="button button-block"  style="color: white !important; margin:0px; border:0px"
+            <button class="button button-block"  style="color: white !important; font-size: 13pt ;margin:0px; border:0px"
                     ng-class="{'button-dark-green' : mode!='stats' , 'button-light-green': mode=='stats'}"
                     ng-click="mode='stats' ">
-                Stats
+              Stats
             </button>
         </div>
 
@@ -61,8 +61,9 @@
                  Cover Charge
                </div>
                <div style="width:100%; height:70px">
-                 <div style="position:absolute; top:35%; width:50%; align:center">
-                   <i class="ion-speakerphone" style="font-size:45px;"></i>
+                 <div style="position:absolute; top:28%; width:50%; align:center">
+                   <img src="img/cover_charge_icon.png" style="width:60%"/>
+
                  </div>
                  <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
                    ${{venue.cover || "888"}}
@@ -76,7 +77,7 @@
                <div style="width:100%; height:70px">
 
                  <div style="position:absolute; top:35%; width:50%; align:center">
-                   <i class="ion-ios-people" style="font-size:45px;"></i>
+                   <i class="ion-ios-people" style="font-size:40px;"></i>
                  </div>
                  <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
                    {{venue.capacity || "888"}}
@@ -92,7 +93,7 @@
               <div style="width:100%; height:70px">
 
                 <div style="position:absolute; top:35%; width:50%; align:center">
-                  <i class="ion-android-bar" style="font-size:45px;"></i>
+                  <i class="ion-android-bar" style="font-size:40px;"></i>
                 </div>
                 <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
                   {{venue.num_bars || "?"}}
@@ -106,7 +107,7 @@
               <div style="width:100%; height:70px">
 
                 <div style="position:absolute; top:35%; width:50%; align:center">
-                  <i class="ion-beer" style="font-size:45px;"></i>
+                  <i class="ion-beer" style="font-size:40px;"></i>
                 </div>
                 <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
                   {{venue.beers_on_tap || "?"}}
@@ -123,7 +124,7 @@
               <div style="width:100%; height:70px">
 
                 <div style="position:absolute; top:35%; width:50%; align:center">
-                  <i class="ion-woman" style="font-size:45px;"></i>
+                  <i class="ion-woman" style="font-size:40px;"></i>
                 </div>
                 <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
                   {{venue.num_womens_bathroom || "?"}}
@@ -136,7 +137,7 @@
             </div>
             <div style="width:100%; height:70px">
               <div style="position:absolute; top:35%; width:50%; align:center">
-                <i class="ion-man" style="font-size:45px;"></i>
+                <i class="ion-man" style="font-size:40px;"></i>
               </div>
               <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
                 {{venue.num_mens_bathroom || "?"}}

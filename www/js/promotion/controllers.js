@@ -78,8 +78,9 @@ angular.module('promotion.controllers', ['buzzbands.promotion.service'])
     this._init = function(){
       $scope.promotion = $stateParams.promotion;
       console.log($scope.promotion);
-      $scope.venue = Venue.get({venue_id: $scope.promotion.venue_id});
-
+      if($scope.promotion){
+        $scope.venue = Venue.get({venue_id: $scope.promotion.venue_id});
+      }
       console.log("PROMOTION :: " + $scope.promotion);
     }
 
