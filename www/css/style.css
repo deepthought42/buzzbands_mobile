@@ -24,7 +24,7 @@ ul.rating li i {
 }
 
 .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
-    color: #87CD18 !important;
+    color: #4BBA4B !important;
 }
 
 .tab-item {
@@ -42,14 +42,35 @@ ul.rating li i {
   background-position: right !important;
 }
 
-.button-dark-pink {
-  background-color: #de519b;
+.button-dark-green {
+  background-color: #4bba4b;
 }
 
-.button-light-pink {
-    background-color: #e87db5;
+.button-light-green {
+    background-color: #49e149;
 }
 
 .main-background {
   background-color : #F3F3F3;
+}
+
+.pink-font {
+  color: #de519b;
+}
+
+.venue-detail {
+  font-size:11pt;
+  position:relative;
+  top: 2px;
+}
+
+#venueDetails-button-bar .activated {
+  background-color: #49e149 !important;
+}
+
+.venue-miles{
+  font-size: 11pt;
+  position:absolute;
+  right:5px;
+  top: 12px;
 }

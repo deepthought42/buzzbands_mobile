@@ -1,33 +1,36 @@
 <ion-view title="" id="venueDetailsPage"  class="main-background">
   <ion-content padding="true" class="has-header">
-      <div class="list card">
+      <div class="list">
         <ion-item class="item-thumbnail-left">
           <img ng-src="{{venue.logo_url !== undefined && venue.logo_url != null ? venue.logo_url : 'img/venue_placeholder.png'}}"/>
-          <div class="col col-70" >
+          <div class="col col-70" style="padding-top:0px">
 
             <p style="font-size:13pt; font-weight: bold">{{venue.name}}</p>
             <p style="font-size:11pt;position:relative; top: 2px">{{venue.address}}, {{venue.city}}</p>
+            <p style="font-size:11pt;position:relative; top: 2px; color: #de519b">{{venue.phone || '(xxx)xxx-xxxx'}}</p>
+
             <p style="font-size:11pt;position:relative; top: 2px">{{venue.open_time || "12am"}} - {{venue.close_time || "11:59pm"}}</p>
+            <p style="font-size:11pt;position:relative; top: 2px; color: #de519b" class="pink-font">{{venue.url || "url unavailable"}}</p>
+
           </div>
 
-          <div class="text-right" style="font-size: 11pt; position:absolute;  right:5px; top: 12px">
-                {{venue.distance | number:1}} mi
+          <div class="text-right" style="font-size: 11pt; position:absolute;  right:7px; top: 10px">
+              {{venue.distance | number:1}} mi
 
-                <br />
-                <span style="position:relative; right: 6px">{{venue.promo_count}} <i class="ion-speakerphone" ></i></span>
-            </div>
-         </div>
+              <br />
+              <span style="position:relative; right: 6px">{{venue.promo_count}} <i class="ion-speakerphone" ></i></span>
+          </div>
 
         </ion-item>
-        <div id="venueDetails-button-bar" class="button-bar" >
+        <div id="venueDetails-button-bar" class="button-bar">
 
-          <button class="button button-block"  style="color: white !important"
-                  ng-class="{'button-dark-pink' : mode=='promotions' , 'button-light-pink': mode!='promotions'}"
+          <button class="button button-block"  style="color: white !important; margin: 0px; border:0px "
+                  ng-class="{'button-dark-green' : mode!='promotions' , 'button-light-green': mode=='promotions'}"
                   ng-click="mode='promotions'">
               Promotions
           </button>
-            <button id="venueDetails-button2" class="button button-block"  style="color: white !important"
-                    ng-class="{'button-dark-pink' : mode=='stats' , 'button-light-pink': mode!='stats'}"
+            <button class="button button-block"  style="color: white !important; margin:0px; border:0px"
+                    ng-class="{'button-dark-green' : mode!='stats' , 'button-light-green': mode=='stats'}"
                     ng-click="mode='stats' ">
                 Stats
             </button>
@@ -49,32 +52,104 @@
 
         </ion-list>
 
-        <div ng-show="mode=='stats'">
-          <div class="row">
-             <div class="col col-50 text-center">
-               {{venue.promo_count}} <i class="ion-speakerphone"></i>
+        <div ng-show="mode=='stats'"
+             class="item"
+             style="background-color:white;border-top:0px;padding: 0px">
+          <div class="row" style="height:100px; margin-top:10px">
+             <div class="col col-50 text-center" style="position:relative">
+               <div style="font-size:11pt;">
+                 Cover Charge
+               </div>
+               <div style="width:100%; height:70px">
+                 <div style="position:absolute; top:35%; width:50%; align:center">
+                   <i class="ion-speakerphone" style="font-size:45px;"></i>
+                 </div>
+                 <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
+                   ${{venue.cover || "888"}}
+                 </div>
+               </div>
              </div>
-             <div class="col col-50 text-center">
-               {{venue.num_bars || "0"}} <i class="ion-speakerphone"></i>
+             <div class="col col-50 text-center"  style="position:relative">
+               <div style="font-size:11pt;">
+                 Capacity
+               </div>
+               <div style="width:100%; height:70px">
+
+                 <div style="position:absolute; top:35%; width:50%; align:center">
+                   <i class="ion-ios-people" style="font-size:45px;"></i>
+                 </div>
+                 <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
+                   {{venue.capacity || "888"}}
+                 </div>
+               </div>
              </div>
           </div>
-          <div class="row">
-             <div class="col col-50 text-center">
-               Stat3
-             </div>
-             <div class="col col-50 text-center">
-               Stat4
-             </div>
+          <div class="row" style="height:100px; padding: 0px">
+            <div class="col col-50 text-center" style="position:relative">
+              <div style="font-size:11pt;">
+                Bars
+              </div>
+              <div style="width:100%; height:70px">
+
+                <div style="position:absolute; top:35%; width:50%; align:center">
+                  <i class="ion-android-bar" style="font-size:45px;"></i>
+                </div>
+                <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
+                  {{venue.num_bars || "?"}}
+                </div>
+              </div>
+            </div>
+            <div class="col col-50 text-center" style="position:relative">
+              <div style="font-size:11pt;">
+                Beers on Tap
+              </div>
+              <div style="width:100%; height:70px">
+
+                <div style="position:absolute; top:35%; width:50%; align:center">
+                  <i class="ion-beer" style="font-size:45px;"></i>
+                </div>
+                <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
+                  {{venue.beers_on_tap || "?"}}
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="row">
-             <div class="col col-50 text-center">
-                Stat5
-             </div>
-             <div class="col col-50 text-center">
-               Stat6
-             </div>
+
+          <div class="row" style="height:100px; padding: 0px">
+            <div class="col col-50 text-center" style="position:relative">
+              <div style="font-size:11pt;">
+                Womens Bathroom
+              </div>
+              <div style="width:100%; height:70px">
+
+                <div style="position:absolute; top:35%; width:50%; align:center">
+                  <i class="ion-woman" style="font-size:45px;"></i>
+                </div>
+                <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
+                  {{venue.num_womens_bathroom || "?"}}
+                </div>
+              </div>
+            </div>
+          <div class="col col-50 text-center" style="position:relative">
+            <div style="font-size:11pt;">
+              Mens Bathroom
+            </div>
+            <div style="width:100%; height:70px">
+              <div style="position:absolute; top:35%; width:50%; align:center">
+                <i class="ion-man" style="font-size:45px;"></i>
+              </div>
+              <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
+                {{venue.num_mens_bathroom || "?"}}
+              </div>
+            </div>
           </div>
         </div>
+
+        <div style="margin-left: 10px; margin-bottom:10px;">
+          Dress code: casual
+        </div>
       </div>
+    </div>
+
   </ion-content>
 </ion-view>

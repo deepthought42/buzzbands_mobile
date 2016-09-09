@@ -1,30 +1,42 @@
 <ion-view title="" class="main-background">
-    <ion-content padding="true" class="has-header">
-        <h3 class="text-center">{{promotion.name}}</h3>
-        <div class="list card">
-            <!--<div background-color: rgb(232, 235, 239);">-->
-            <img class="icon ion-image" ng-src="{{promotion.ad_location !== undefined && promotion.ad_location !==null ? promotion.ad_location : 'img/promotion_placeholder.png'}}" style="margin: 0px; width: 100%;" />
-            <!--</div>-->
-            <ion-item class="dark text-center" >${{promotion.price || "3.50"}}</ion-item>
-            <ion-item class="dark text-center" >{{promotion.description || "Description missing"}}</ion-item>
+    <ion-content padding="true">
+        <div class="list" style="padding: 0px; margin: 0px;">
+          <ion-item style="font-size:13pt !important; padding-left:10px">
+            <span class="text-left">
+              {{promotion.name}}
+            </span>
+
+            <span class="text-right" style="position:absolute; right:10px; width: 15%;">
+              ${{promotion.price || "3.50"}}
+            </span>
+          </ion-item>
+          <ion-item style="padding: 0px; margin: 0px" >
+            <img class="" ng-src="{{promotion.ad_location !== undefined && promotion.ad_location !==null ? promotion.ad_location : 'img/promotion_placeholder.png'}}"
+                 style="padding: 0px; margin: 0px; width: 100%; height:400px !important " />
+          </ion-item>
+            <ion-item class="dark text-left" style="padding-left:10px">
+              <p>
+                {{promotion.description || "Description unavailable"}}
+              </p>
+            </ion-item>
 
 
             <ion-item class="item-thumbnail-left"
                       ui-sref="tab.venueDetails({venue: venue, mode: 'promotions'})">
                 <img ng-src="{{venue.logo_url !== undefined && venue.logo_url !==null ? venue.logo_url : 'img/venue_placeholder.png'}}"/>
 
-                <div class="col col-70" >
+                <div class="col col-70" style="padding-top:0px" >
 
                   <p style="font-size:13pt; font-weight: bold">{{venue.name}}</p>
                   <p style="font-size:11pt;position:relative; top: 2px">{{venue.address}}, {{venue.city}}</p>
                   <p style="font-size:11pt;position:relative; top: 2px">{{venue.open_time || "12am"}} - {{venue.close_time || "11:59pm"}}</p>
                 </div>
 
-                <div class="text-right" style="font-size: 11pt; position:absolute;  right:5px; top: 12px">
+                <div class="text-right" style="font-size: 11pt; position:absolute;right:7px; top: 10px">
                       {{venue.distance | number:1 }} mi
 
                       <br />
-                      <span style="position:relative; right: 6px">{{venue.promo_count}} <i class="ion-speakerphone" ></i></span>
+                      <span style="position:relative; right:5px">{{venue.promo_count}} <i class="ion-speakerphone" ></i></span>
                   </div>
                </div>
             </ion-item>

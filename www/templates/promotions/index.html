@@ -11,7 +11,7 @@
                       on-tap="goToPromotionDetails(promotion)">
                 <img ng-src="{{promotion.ad_location !== undefined && promotion.ad_location != null ? promotion.ad_location : 'img/promotion_placeholder.png'}}"/>
 
-                <div class="col col-70" >
+                <div class="col col-70" style="padding-top:0px">
                      <p style="font-size:13pt; font-weight: bold">{{promotion.name}}</p>
                      <p style="font-size:11pt;position:relative; top: 2px">${{promotion.price || "3.50"}}</p>
                  </div>

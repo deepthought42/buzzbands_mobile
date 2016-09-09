@@ -6,18 +6,18 @@
                       ui-sref="tab.venueDetails({venue: venue, mode: 'promotions'})">
                 <img ng-src="{{venue.logo_url !== undefined && venue.logo_url !==null ? venue.logo_url : 'img/venue_placeholder.png'}}"/>
 
-                <div class="col col-70" >
+                <div class="col col-70" style="padding-top:0px">
 
                   <p style="font-size:13pt; font-weight: bold">{{venue.name}}</p>
                   <p style="font-size:11pt;position:relative; top: 2px">{{venue.address}}, {{venue.city}}</p>
                   <p style="font-size:11pt;position:relative; top: 2px">{{venue.open_time || "12am"}} - {{venue.close_time || "11:59pm"}}</p>
                 </div>
 
-                <div class="text-right" style="font-size: 11pt; position:absolute;  right:5px; top: 12px">
+                <div class="text-right" style="font-size: 11pt; position:absolute;  right:7px; top: 10px">
                       {{venue.distance | number:1}} mi
 
                       <br />
-                      <span style="position:relative; right: 6px">{{venue.promo_count}} <i class="ion-speakerphone" ></i></span>
+                      <span style="position:relative; right: 5px">{{venue.promo_count}} <i class="ion-speakerphone" ></i></span>
                   </div>
                </div>
             </ion-item>
