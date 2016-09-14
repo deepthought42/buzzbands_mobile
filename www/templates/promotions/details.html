@@ -7,7 +7,7 @@
             </span>
 
             <span class="text-right" style="position:absolute; right:10px; width: 15%;">
-              ${{promotion.price || "3.50"}}
+              ${{promotion.price || "$?"}}
             </span>
           </ion-item>
           <ion-item style="padding: 0px; margin: 0px" >
@@ -29,7 +29,7 @@
 
                   <p style="font-size:13pt; font-weight: bold">{{venue.name}}</p>
                   <p style="font-size:11pt;position:relative; top: 2px">{{venue.address}}, {{venue.city}}</p>
-                  <p style="font-size:11pt;position:relative; top: 2px">{{venue.open_time || "12am"}} - {{venue.close_time || "11:59pm"}}</p>
+                  <p style="font-size:11pt;position:relative; top: 2px">{{venue.open_time || "?"}} - {{venue.close_time || "?"}}</p>
                 </div>
 
                 <div class="text-right" style="font-size: 11pt; position:absolute;right:7px; top: 10px">

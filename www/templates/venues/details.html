@@ -66,7 +66,7 @@
 
                  </div>
                  <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
-                   ${{venue.cover || "888"}}
+                   ${{venue.cover || "$?"}}
                  </div>
                </div>
              </div>
@@ -80,7 +80,7 @@
                    <i class="ion-ios-people" style="font-size:40px;"></i>
                  </div>
                  <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
-                   {{venue.capacity || "888"}}
+                   {{venue.capacity || "?"}}
                  </div>
                </div>
              </div>
@@ -110,7 +110,7 @@
                   <i class="ion-beer" style="font-size:40px;"></i>
                 </div>
                 <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
-                  {{venue.beers_on_tap || "?"}}
+                  {{venue.num_beers_on_tap || "?"}}
                 </div>
               </div>
             </div>
@@ -127,7 +127,7 @@
                   <i class="ion-woman" style="font-size:40px;"></i>
                 </div>
                 <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
-                  {{venue.num_womens_bathroom || "?"}}
+                  {{venue.womensBathroom || "?"}}
                 </div>
               </div>
             </div>
@@ -140,7 +140,7 @@
                 <i class="ion-man" style="font-size:40px;"></i>
               </div>
               <div style="font-size: 20pt; position:absolute; width: 50%; top: 50%; align:center; display:inline">
-                {{venue.num_mens_bathroom || "?"}}
+                {{venue.mensBathroom || "?"}}
               </div>
             </div>
           </div>
